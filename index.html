@@ -1,0 +1,202 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfólio de projetos de engenharia, eletrônica, programação e robótica.">
+  <title>Meu Portfólio | Projetos e Tecnologia</title>
+
+  <style>
+    :root {
+      --fundo: #0b1120;
+      --cartao: #151f32;
+      --texto: #edf2f7;
+      --destaque: #38bdf8;
+      --secundario: #a8b5c9;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: var(--fundo);
+      color: var(--texto);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 64px 20px;
+      text-align: center;
+      background: linear-gradient(135deg, #152b48, #0b1120);
+    }
+
+    header h1 {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin-bottom: 12px;
+    }
+
+    header p {
+      color: var(--secundario);
+      max-width: 650px;
+      margin: 0 auto 24px;
+    }
+
+    a { color: var(--destaque); }
+
+    .botao {
+      display: inline-block;
+      padding: 10px 18px;
+      border: 1px solid var(--destaque);
+      border-radius: 8px;
+      text-decoration: none;
+      margin: 5px;
+    }
+
+    main {
+      max-width: 1050px;
+      padding: 30px 20px 60px;
+      margin: auto;
+    }
+
+    h2 {
+      margin-top: 36px;
+      border-bottom: 1px solid #2a3950;
+      padding-bottom: 10px;
+    }
+
+    .projetos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+    }
+
+    .projeto {
+      background: var(--cartao);
+      border: 1px solid #26354b;
+      border-radius: 12px;
+      padding: 22px;
+    }
+
+    .projeto h3 { color: var(--destaque); }
+    .projeto p { color: var(--secundario); }
+
+    .tecnologias {
+      font-size: 0.9rem;
+      color: var(--secundario);
+    }
+
+    footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--secundario);
+      border-top: 1px solid #26354b;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Projetos e Tecnologia</h1>
+    <p>
+      Portfólio de projetos de engenharia elétrica, programação,
+      automação, eletrônica embarcada, IoT e robótica.
+    </p>
+    <a class="botao" href="#projetos">Conheça os projetos</a>
+    <a class="botao"
+       href="https://github.com/SEU-USUARIO"
+       target="_blank" rel="noopener noreferrer">
+      Meu GitHub
+    </a>
+  </header>
+
+  <main>
+    <section id="sobre">
+      <h2>Sobre</h2>
+      <p>
+        Desenvolvo projetos que integram hardware, software e
+        engenharia, explorando soluções práticas, prototipagem
+        eletrônica, sistemas embarcados e automação.
+      </p>
+    </section>
+
+    <section id="projetos">
+      <h2>Projetos em destaque</h2>
+
+      <div class="projetos">
+        <article class="projeto">
+          <h3>Braço robótico com MQTT</h3>
+          <p>
+            Controle de movimentos de um braço robótico por meio
+            de microcontrolador, servomotores e comunicação MQTT.
+          </p>
+          <p class="tecnologias">
+            ESP32 · MQTT · C++ · IoT
+          </p>
+          <a href="https://github.com/SEU-USUARIO/REPOSITORIO-1">
+            Ver projeto →
+          </a>
+        </article>
+
+        <article class="projeto">
+          <h3>Sensores com ESP32</h3>
+          <p>
+            Experimentos com sensores, display I2C, aquisição de
+            dados e periféricos para sistemas embarcados.
+          </p>
+          <p class="tecnologias">
+            ESP32-C3 · Arduino · I2C · Eletrônica
+          </p>
+          <a href="https://github.com/SEU-USUARIO/REPOSITORIO-2">
+            Ver projeto →
+          </a>
+        </article>
+
+        <article class="projeto">
+          <h3>Sistema web com Flask</h3>
+          <p>
+            Aplicação web com autenticação de usuários,
+            controle de permissões e banco de dados.
+          </p>
+          <p class="tecnologias">
+            Python · Flask · MySQL · HTML · CSS
+          </p>
+          <a href="https://github.com/SEU-USUARIO/REPOSITORIO-3">
+            Ver projeto →
+          </a>
+        </article>
+
+        <article class="projeto">
+          <h3>Projetos de engenharia elétrica</h3>
+          <p>
+            Estudos, cálculos, circuitos, instalações elétricas
+            e soluções de automação.
+          </p>
+          <p class="tecnologias">
+            Engenharia elétrica · CAD · Automação
+          </p>
+          <a href="https://github.com/SEU-USUARIO/REPOSITORIO-4">
+            Ver projeto →
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="contato">
+      <h2>Contato</h2>
+      <p>
+        Para conhecer outros trabalhos, visite meu perfil no
+        GitHub ou entre em contato.
+      </p>
+      <a href="https://github.com/SEU-USUARIO">
+        GitHub
+      </a>
+    </section>
+  </main>
+
+  <footer>
+    <p>Portfólio de projetos · 2026</p>
+  </footer>
+</body>
+</html>
