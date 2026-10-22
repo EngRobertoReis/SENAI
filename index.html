@@ -121,59 +121,7 @@
     }
     .intro h2 { margin: 0 0 7px; font-size: 1.25rem; }
     .intro p { margin: 0; color: var(--muted); }
-    .section-heading {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      margin: 42px 0 18px;
-      font-size: 1.45rem;
-      line-height: 1.3;
-    }
-    .section-heading::before {
-      content: "";
-      width: 7px;
-      height: 28px;
-      border-radius: 5px;
-      background: var(--senai-red);
-    }
-    .category-grid {
-      display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 18px;
-    }
-    .category-card {
-      min-height: 215px;
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: end;
-      border-radius: 10px;
-      background: var(--charcoal);
-      box-shadow: var(--shadow);
-      color: var(--white);
-      text-decoration: none;
-      isolation: isolate;
-    }
-    .category-card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      background-image: var(--card-image);
-      background-size: cover;
-      background-position: center;
-      transition: transform .35s ease;
-    }
-    .category-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      background: linear-gradient(180deg, rgba(20,20,20,.08) 10%, rgba(20,20,20,.88) 100%);
-    }
-    .category-card:hover::before { transform: scale(1.06); }
-    .category-card span { padding: 20px; font-size: 1.12rem; font-weight: 800; }
-    .project-section {
+    .section-panel {
       margin-top: 24px;
       padding: 28px;
       background: var(--white);
@@ -182,63 +130,8 @@
       box-shadow: var(--shadow);
       scroll-margin-top: 84px;
     }
-    .project-section h3 { margin: 0 0 8px; font-size: 1.35rem; }
-    .project-section > p { margin: 0 0 18px; color: var(--muted); }
-    .project-layout {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 24px;
-      align-items: start;
-    }
-    .project-image {
-      width: 100%;
-      min-height: 220px;
-      max-height: 360px;
-      object-fit: cover;
-      display: block;
-      border-radius: 8px;
-      background: #e7e7e7;
-    }
-    .video-placeholder {
-      min-height: 220px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 22px;
-      border-radius: 8px;
-      background: #292929;
-      color: var(--white);
-      text-align: center;
-    }
-    .play-icon {
-      width: 58px;
-      height: 58px;
-      display: grid;
-      place-items: center;
-      padding-left: 4px;
-      border-radius: 50%;
-      background: var(--senai-red);
-      font-size: 1.5rem;
-    }
-    .video-placeholder p { margin: 0; font-weight: 700; }
-    .video-placeholder small { color: #dedede; }
-    .video-placeholder a {
-      color: var(--white);
-      font-size: .86rem;
-      font-weight: 700;
-      text-underline-offset: 4px;
-    }
-    .tags { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
-    .tag {
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: #ffe5e5;
-      color: #a50000;
-      font-size: .75rem;
-      font-weight: 700;
-    }
+    .section-panel h3 { margin: 0 0 8px; font-size: 1.35rem; }
+    .section-panel p { margin: 0; color: var(--muted); }
     footer {
       padding: 26px 20px;
       background: var(--charcoal);
@@ -251,7 +144,6 @@
     @media (max-width: 900px) {
       .topbar-inner { align-items: flex-start; }
       .brand img { width: 170px; }
-      .category-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
     @media (max-width: 620px) {
       .topbar-inner { padding: 18px 18px 20px; flex-direction: column; gap: 15px; }
@@ -261,10 +153,7 @@
       .nav-inner { padding: 0 12px; gap: 0; }
       nav a { padding: 12px 9px; font-size: .76rem; }
       main { padding: 24px 16px 44px; }
-      .intro, .project-section { padding: 21px 18px; }
-      .category-grid, .project-layout { grid-template-columns: 1fr; }
-      .category-card { min-height: 175px; }
-      .section-heading { font-size: 1.25rem; }
+      .intro, .section-panel { padding: 21px 18px; }
     }
   </style>
 </head>
@@ -272,9 +161,8 @@
   <header class="topbar" id="inicio">
     <div class="topbar-inner">
       <a class="brand" href="#inicio" aria-label="SENAI-SP - início">
-        <!-- Salve o logo enviado como logo-senai.png na mesma pasta deste arquivo. -->
         <img src="logo-senai.png" alt="Logo SENAI-SP"
-             onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;color:white;font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;font-style:italic;letter-spacing:-.06em;line-height:1&quot;>SENAI</span>';">
+             onerror="this.style.display='none'; this.parentElement.innerHTML='<span style=&quot;color:white;font-size:clamp(1.7rem,4vw,2.5rem);font-weight:800;font-style:italic;letter-spacing:-.06em;">SENAI</span>'">
       </a>
       <div class="identity">
         <h1>Portifólio de atividades desenvolvidas no SENAI - SP</h1>
@@ -290,88 +178,68 @@
   <nav aria-label="Navegação principal">
     <div class="nav-inner">
       <a href="#inicio">Início</a>
-      <a href="#categorias">Áreas de atuação</a>
-      <a href="#robotica">Robótica</a>
-      <a href="#eletronica">Eletrônica &amp; IoT</a>
-      <a href="#programacao">Programação</a>
-      <a href="#engenharia">Engenharia elétrica</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#hannover-messe">Hannover Messe</a>
+      <a href="#remote">ReMoTe</a>
+      <a href="#saep">SAEP</a>
+      <a href="#saga-senai">Saga SENAI</a>
+      <a href="#sp-skills">SP Skills</a>
+      <a href="#projetos-e-educacao">Projetos e Educação</a>
+      <a href="#mundo-senai">Mundo SENAI</a>
+      <a href="#pro-educador">Pró Educador</a>
+      <a href="#outros">Outros</a>
     </div>
   </nav>
 
   <main>
-    <section class="intro" id="categorias">
-      <h2>Projetos, práticas e atividades</h2>
-      <p>Explore as áreas abaixo para conhecer atividades desenvolvidas em ensino, tecnologia e projetos aplicados. Os textos, imagens e vídeos podem ser personalizados conforme cada trabalho.</p>
+    <section class="intro" id="sobre">
+      <h2>Sobre</h2>
+      <p>Apresentação das principais atividades, projetos e iniciativas desenvolvidas no SENAI-SP, com foco em educação, tecnologia, inovação e formação profissional.</p>
     </section>
 
-    <h2 class="section-heading">Áreas de atuação</h2>
-    <div class="category-grid">
-      <a class="category-card" href="#robotica" style="--card-image: url('https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=900&q=80')"><span>Robótica</span></a>
-      <a class="category-card" href="#eletronica" style="--card-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80')"><span>Eletrônica &amp; IoT</span></a>
-      <a class="category-card" href="#programacao" style="--card-image: url('https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=900&q=80')"><span>Programação</span></a>
-      <a class="category-card" href="#engenharia" style="--card-image: url('https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=900&q=80')"><span>Engenharia elétrica</span></a>
-    </div>
-
-    <h2 class="section-heading">Atividades e projetos</h2>
-
-    <section class="project-section" id="robotica">
-      <h3>Robótica e sistemas embarcados</h3>
-      <p>Descreva aqui as atividades de robótica, montagem de mecanismos, programação de microcontroladores, integração de sensores e acionamento de atuadores.</p>
-      <div class="project-layout">
-        <img class="project-image" src="https://images.unsplash.com/photo-1485827404703-89b55fcc595e?auto=format&fit=crop&w=1200&q=80" alt="Imagem ilustrativa de robótica">
-        <div class="video-placeholder">
-          <div class="play-icon" aria-hidden="true">▶</div>
-          <p>Vídeo do projeto de robótica</p>
-          <small>Substitua o endereço abaixo pelo link do vídeo no YouTube.</small>
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Adicionar link do YouTube</a>
-        </div>
-      </div>
-      <div class="tags"><span class="tag">Robótica</span><span class="tag">Microcontroladores</span><span class="tag">Automação</span></div>
+    <section class="section-panel" id="hannover-messe">
+      <h3>Hannover Messe</h3>
+      <p>Atividades e experiências relacionadas a eventos, inovação industrial e integração com o setor produtivo.</p>
     </section>
 
-    <section class="project-section" id="eletronica">
-      <h3>Eletrônica, sensores e IoT</h3>
-      <p>Apresente práticas de eletrônica analógica e digital, instrumentação, leitura de sensores, comunicação entre dispositivos e aplicações de Internet das Coisas.</p>
-      <div class="project-layout">
-        <img class="project-image" src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1200&q=80" alt="Imagem ilustrativa de eletrônica">
-        <div class="video-placeholder">
-          <div class="play-icon" aria-hidden="true">▶</div>
-          <p>Vídeo de eletrônica ou IoT</p>
-          <small>Substitua o endereço abaixo pelo link do vídeo no YouTube.</small>
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Adicionar link do YouTube</a>
-        </div>
-      </div>
-      <div class="tags"><span class="tag">Eletrônica</span><span class="tag">Sensores</span><span class="tag">IoT</span></div>
+    <section class="section-panel" id="remote">
+      <h3>ReMoTe</h3>
+      <p>Projetos e ações voltados à mobilidade, tecnologia aplicada e desenvolvimento de soluções inovadoras.</p>
     </section>
 
-    <section class="project-section" id="programacao">
-      <h3>Programação e desenvolvimento de sistemas</h3>
-      <p>Registre aplicações desenvolvidas, lógica de programação, sistemas web, integração com bancos de dados, APIs e ferramentas utilizadas nas aulas e projetos.</p>
-      <div class="project-layout">
-        <img class="project-image" src="https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80" alt="Imagem ilustrativa de programação">
-        <div class="video-placeholder">
-          <div class="play-icon" aria-hidden="true">▶</div>
-          <p>Vídeo de programação</p>
-          <small>Substitua o endereço abaixo pelo link do vídeo no YouTube.</small>
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Adicionar link do YouTube</a>
-        </div>
-      </div>
-      <div class="tags"><span class="tag">Programação</span><span class="tag">Desenvolvimento web</span><span class="tag">Sistemas</span></div>
+    <section class="section-panel" id="saep">
+      <h3>SAEP</h3>
+      <p>Desenvolvimento de atividades, práticas e ações vinculadas ao SAEP e ao fortalecimento da formação técnica.</p>
     </section>
 
-    <section class="project-section" id="engenharia">
-      <h3>Engenharia elétrica e automação</h3>
-      <p>Inclua projetos e atividades de instalações elétricas, comandos elétricos, acionamentos, controladores lógicos programáveis (CLPs), segurança e eficiência energética.</p>
-      <div class="project-layout">
-        <img class="project-image" src="https://images.unsplash.com/photo-1581092921461-eab62e97a780?auto=format&fit=crop&w=1200&q=80" alt="Imagem ilustrativa de engenharia e tecnologia">
-        <div class="video-placeholder">
-          <div class="play-icon" aria-hidden="true">▶</div>
-          <p>Vídeo de engenharia elétrica ou automação</p>
-          <small>Substitua o endereço abaixo pelo link do vídeo no YouTube.</small>
-          <a href="https://www.youtube.com/" target="_blank" rel="noopener noreferrer">Adicionar link do YouTube</a>
-        </div>
-      </div>
-      <div class="tags"><span class="tag">Instalações elétricas</span><span class="tag">CLP</span><span class="tag">Automação</span></div>
+    <section class="section-panel" id="saga-senai">
+      <h3>Saga SENAI</h3>
+      <p>Iniciativas e projetos que conectam educação, tecnologia e transformação social dentro do contexto do SENAI.</p>
+    </section>
+
+    <section class="section-panel" id="sp-skills">
+      <h3>SP Skills</h3>
+      <p>Trabalhos relacionados a competências, habilidades e desenvolvimento profissional alinhados às demandas do mercado.</p>
+    </section>
+
+    <section class="section-panel" id="projetos-e-educacao">
+      <h3>Projetos e Educação</h3>
+      <p>Experiências de aprendizagem, projetos institucionais e atividades educacionais com foco em formação e inovação.</p>
+    </section>
+
+    <section class="section-panel" id="mundo-senai">
+      <h3>Mundo SENAI</h3>
+      <p>Atividades e ações que mostram a atuação do SENAI como referência em educação técnica, inovação e desenvolvimento regional.</p>
+    </section>
+
+    <section class="section-panel" id="pro-educador">
+      <h3>Pró Educador</h3>
+      <p>Iniciativas voltadas ao desenvolvimento profissional docente e à melhoria contínua da prática educativa.</p>
+    </section>
+
+    <section class="section-panel" id="outros">
+      <h3>Outros</h3>
+      <p>Projetos complementares, ações especiais e atividades de relevância para a formação e atuação profissional.</p>
     </section>
   </main>
 
