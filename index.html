@@ -130,7 +130,19 @@
       box-shadow: var(--shadow);
       scroll-margin-top: 84px;
     }
-    .section-panel h3 { margin: 0 0 8px; font-size: 1.35rem; }
+    .section-panel h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      line-height: 1.2;
+    }
+    .section-panel h3 img {
+      display: block;
+      width: min(420px, 100%);
+      height: auto;
+      border-radius: 0;
+      background: var(--senai-red);
+      padding: 0;
+    }
     .section-panel p { margin: 0; color: var(--muted); }
     footer {
       padding: 26px 20px;
@@ -195,7 +207,7 @@
     </section>
 
     <section class="section-panel" id="hannover-messe">
-      <h3>Hannover Messe</h3>
+      <h3><img src="logo-senai.png" alt="Hannover Messe"></h3>
       <p>Atividades e experiências relacionadas a eventos, inovação industrial e integração com o setor produtivo.</p>
     </section>
 
