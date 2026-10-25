@@ -42,12 +42,31 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
 @media(max-width:620px){.topbar-inner{padding:18px 18px 20px;flex-direction:column;gap:15px}.brand img{width:190px}.identity h1{font-size:1.35rem}.identity .details{font-size:.8rem}.nav-inner{padding:0 12px;gap:0}nav a{padding:12px 9px;font-size:.76rem}main{padding:24px 16px 44px}.intro,.section-panel{padding:21px 18px}}
 
 /* =========================================
+   ESTRUTURA LADO A LADO (GRID/FLEX)
+   ========================================= */
+.media-row {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 15px;
+}
+@media(min-width: 800px) {
+  .media-row {
+    flex-direction: row;
+    align-items: flex-start; /* Alinha o conteúdo no topo */
+  }
+  .media-col {
+    flex: 1;
+    min-width: 0;
+  }
+}
+
+/* =========================================
    ESTILOS DO CARROSSEL DE IMAGENS
    ========================================= */
 .carousel-wrapper {
   position: relative;
   width: 100%;
-  margin: 15px auto 0;
   display: flex;
   align-items: center;
 }
@@ -70,8 +89,8 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
   flex: 0 0 100%;
   width: 100%;
   height: auto;
-  max-height: 500px;
-  object-fit: contain; /* Ajusta a foto sem cortar */
+  max-height: 420px; /* Ajustado para alinhar melhor com a caixa do PDF */
+  object-fit: contain;
   scroll-snap-align: center;
   border-radius: 6px;
   background: var(--white);
@@ -93,7 +112,7 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
   transition: background-color 0.3s ease;
 }
 .carousel-btn:hover {
-  background-color: rgba(201, 0, 0, 0.9); /* Usa o vermelho do Senai no hover */
+  background-color: rgba(201, 0, 0, 0.9);
 }
 .prev-btn { left: 20px; }
 .next-btn { right: 20px; }
@@ -139,7 +158,7 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
     <p>Resumo Profissional: Instrutor de Formação Profissional III na Unidade 6.01 - São Carlos, desde 2023. Experiências anteriores de mercado incluem: Atuação como Engenheiro Eletricista e de Automação Industrial</p>
   </section>
 
-  <!-- SEÇÃO HANNOVER -->
+  <!-- SEÇÃO HANNOVER ATUALIZADA (PDF e Carrossel lado a lado) -->
   <section class="section-panel" id="hannover">
     <h2>Hannover Messe</h2>
     
@@ -166,11 +185,11 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
         <!-- COLUNA 2: Carrossel de Fotos -->
         <div class="media-col">
           <h3>Galeria de Fotos - Hannover</h3>
-          <div class="carousel-wrapper" style="margin-top: 0;">
+          <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             
             <div class="carousel-track">
-              <!-- Suas imagens aqui -->
+              <!-- Suas imagens aqui. Adicione mais tags <img> se necessário -->
               <img class="carousel-img" src="images/hannover/hannover_1.jpg" alt="Foto 1 em Hannover">
               <img class="carousel-img" src="images/hannover/hannover_2.jpg" alt="Foto 2 em Hannover">
               <img class="carousel-img" src="images/hannover/hannover_3.jpg" alt="Foto 3 em Hannover">
@@ -181,24 +200,9 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
           </div>
         </div>
 
-      </div> <!-- fim da media-row -->
-    </div>
-
-    <!-- Opcional: Se quiser adicionar o vídeo, crie uma nova section-block abaixo -->
-    <!-- 
-    <div class="section-block">
-      <h3>Vídeo do Projeto</h3>
-      <div class="video-frame">
-        <iframe src="https://www.youtube.com/embed/ID_DO_VIDEO" ...></iframe>
       </div>
     </div>
-    -->
-
   </section>
-  <!--
-  MODELO PARA CRIAR NOVAS SEÇÕES:
-  Para criar uma nova seção com carrossel, basta copiar e colar a estrutura <section class="section-panel"> inteira, trocar o ID e os caminhos das imagens. O Javascript cuidará dos botões automaticamente.
-  -->
 
 </main>
 
@@ -232,8 +236,3 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
 </script>
 </body>
 </html>
-```eof
-
-Basta copiar todo o bloco de código acima e substituir o conteúdo do seu `index.html` no GitHub. 
-
-**Observação:** No bloco da galeria, eu coloquei exemplos como `hannover_2.jpg`, `hannover_3.jpg`, etc. Certifique-se de alterar os nomes dos arquivos lá dentro da tag `<div class="carousel-track">` para corresponderem exatamente aos nomes das fotos que você fez o upload na sua pasta `images/hannover/`.
