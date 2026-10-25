@@ -40,6 +40,68 @@ main{max-width:1180px;margin:0 auto;padding:34px 28px 64px}
 footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-align:center;font-size:.82rem}footer strong{color:#ff7373}
 @media(max-width:900px){.topbar-inner{align-items:flex-start}.brand img{width:170px}}
 @media(max-width:620px){.topbar-inner{padding:18px 18px 20px;flex-direction:column;gap:15px}.brand img{width:190px}.identity h1{font-size:1.35rem}.identity .details{font-size:.8rem}.nav-inner{padding:0 12px;gap:0}nav a{padding:12px 9px;font-size:.76rem}main{padding:24px 16px 44px}.intro,.section-panel{padding:21px 18px}}
+
+/* =========================================
+   ESTILOS DO CARROSSEL DE IMAGENS
+   ========================================= */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  margin: 15px auto 0;
+  display: flex;
+  align-items: center;
+}
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  gap: 15px;
+  border-radius: 8px;
+  scrollbar-width: none; /* Firefox */
+  background: var(--page-gray);
+  padding: 10px;
+  border: 1px solid var(--border);
+}
+.carousel-track::-webkit-scrollbar {
+  display: none; /* Chrome e Safari */
+}
+.carousel-img {
+  flex: 0 0 100%;
+  width: 100%;
+  height: auto;
+  max-height: 500px;
+  object-fit: contain; /* Ajusta a foto sem cortar */
+  scroll-snap-align: center;
+  border-radius: 6px;
+  background: var(--white);
+}
+.carousel-btn {
+  position: absolute;
+  z-index: 10;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+.carousel-btn:hover {
+  background-color: rgba(201, 0, 0, 0.9); /* Usa o vermelho do Senai no hover */
+}
+.prev-btn { left: 20px; }
+.next-btn { right: 20px; }
+@media(max-width:620px){
+  .carousel-btn { width: 35px; height: 35px; font-size: 16px; }
+  .prev-btn { left: 10px; }
+  .next-btn { right: 10px; }
+}
 </style>
 </head>
 <body>
@@ -49,7 +111,7 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
       <img src="images/general/senai-sp.png" alt="Logo SENAI-SP" onerror="this.style.display='none';">
     </a>
     <div class="identity">
-      <h1>Portifólio de atividades desenvolvidas no SENAI - SP</h1>
+      <h1>Portfólio de atividades desenvolvidas no SENAI - SP</h1>
       <p class="name">Roberto Campos dos Reis Junior</p>
       <p class="details">Instrutor de Formação III - Eletroeletrônica, Automação e TI<br>
       CFP 6.01 - Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe, São Carlos - SP</p>
@@ -60,7 +122,7 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
 <nav aria-label="Navegação principal">
   <div class="nav-inner">
     <a href="#sobre">Sobre</a>
-    <a href="#Hannover Messe">Hannover</a>
+    <a href="#hannover">Hannover</a>
     <!-- Para cada nova seção, adicione um link, por exemplo:
     <a href="#projeto-automacao">Projeto de Automação</a>
     -->
@@ -68,85 +130,91 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
 </nav>
 
 <main>
-  <!-- SEÇÃO FIXA: SOBRE. Edite o texto entre as tags <p>. -->
+  <!-- SEÇÃO FIXA: SOBRE -->
   <section class="intro" id="sobre">
     <h2>Sobre</h2>
     <p>Nome: Roberto Campos dos Reis Junior</p>
     <p>Nascimento: 14/03/1998 (Araraquara - SP)</p>
     <p>Resumo Acadêmico: Bacharel em Engenharia Elétrica com ênfase em Automação, Pós Graduação em Gestão Escolar, MBA em Indústria 4.0 e Técnico em Mecatrônica</p>
-    <p>Resumo Profissional: Instrutor de Formação Profissional III na Unidade 6.01 - São Carlos, desde 2023. Experiências anteriores de mecardo incluem: Atuação como Engenheiro Eletricista e de Automação Industrial</p>
+    <p>Resumo Profissional: Instrutor de Formação Profissional III na Unidade 6.01 - São Carlos, desde 2023. Experiências anteriores de mercado incluem: Atuação como Engenheiro Eletricista e de Automação Industrial</p>
   </section>
 
-   <section class="hannover" id="hannover">
+  <!-- SEÇÃO HANNOVER -->
+  <section class="section-panel" id="hannover">
     <h2>Hannover Messe</h2>
+    
     <div class="section-block">
-      <p class="section-text">Especialista convidado para Missão de Prospeção Tecnológica na "Hannover Messe - 2026", maior feira de automação industrial internacional sediada em Hannover - Alemanhã.</p>
+      <p class="section-text">Especialista convidado para Missão de Prospecção Tecnológica na "Hannover Messe - 2026", maior feira de automação industrial internacional sediada em Hannover - Alemanha.</p>
     </div>
-      <div class="section-block">
-      <h3>Relatório da Missão Tecnológica e Fotos</h3>
+    
+    <div class="section-block">
+      <h3>Relatório da Missão Tecnológica</h3>
       <div class="file-list">
         <article class="file-item">
           <a href="documentos/relatorio-hannover-2026.pdf" target="_blank" rel="noopener">Abrir relatório em PDF</a>
           <img class="image-preview" src="images/general/hannover-messe.png" alt="Relatório Hannover Messe 2026">
           <p>Boletim Tecnológico Hannover Messe 2026</p>
         </article>
-        <article class="file-item">
-          <a href="images/hannover/hannover_1.jpg" target="_blank" rel="noopener">Abrir imagem em tamanho original</a>
-          <img class="image-preview" src="images/hannover/hannover_1.jpg" alt="Foto no Hall de entrada com a equipe de especialistas do SENAI-SP.">
-          <p>Foto no Hall de entrada com a equipe de especialistas do SENAI-SP.</p>
-        </article>
       </div>
     </div>
-    
+
+    <!-- Bloco de Galeria com o Carrossel -->
+    <div class="section-block">
+      <h3>Galeria de Fotos - Hannover</h3>
+      <div class="carousel-wrapper">
+        <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
+        
+        <div class="carousel-track">
+          <img class="carousel-img" src="images/hannover/hannover_1.jpg" alt="Foto 1 em Hannover">
+          <img class="carousel-img" src="images/hannover/hannover_2.jpg" alt="Foto 2 em Hannover">
+          <img class="carousel-img" src="images/hannover/hannover_3.jpg" alt="Foto 3 em Hannover">
+          <img class="carousel-img" src="images/hannover/hannover_4.jpg" alt="Foto 4 em Hannover">
+        </div>
+        
+        <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
+      </div>
+    </div>
   </section>
 
   <!--
   MODELO PARA CRIAR NOVAS SEÇÕES:
-  1. Copie o bloco <section class="section-panel" ...> abaixo.
-  2. Defina um id exclusivo, sem espaços, por exemplo id="projeto-automacao".
-  3. Crie um link para esse id no menu de navegação.
-  4. Edite o título, texto, arquivos e URL do YouTube.
-  5. Coloque imagens/PDFs no repositório GitHub e use caminhos relativos.
+  Para criar uma nova seção com carrossel, basta copiar e colar a estrutura <section class="section-panel"> inteira, trocar o ID e os caminhos das imagens. O Javascript cuidará dos botões automaticamente.
   -->
 
-  <!-- EXEMPLO DE SEÇÃO: remova os comentários para usar e duplique para criar outras.
-  <section class="section-panel" id="projeto-automacao">
-    <h2>Projeto de Automação</h2>
-
-    <div class="section-block">
-      <h3>Texto / descrição</h3>
-      <p class="section-text">Escreva aqui a descrição do projeto, seus objetivos, as tecnologias utilizadas e os resultados. Você pode escrever um texto longo em várias linhas.</p>
-    </div>
-
-    <div class="section-block">
-      <h3>Arquivos estáticos (imagens, PDFs e outros)</h3>
-      <div class="file-list">
-        <article class="file-item">
-          <a href="arquivos/projeto/relatorio.pdf" target="_blank" rel="noopener">Abrir relatório em PDF</a>
-          <p>Relatório técnico do projeto.</p>
-        </article>
-        <article class="file-item">
-          <a href="imagens/projeto/foto1.jpg" target="_blank" rel="noopener">Abrir imagem em tamanho original</a>
-          <img class="image-preview" src="imagens/projeto/foto1.jpg" alt="Descrição da imagem">
-          <p>Fotografia da montagem experimental.</p>
-        </article>
-      </div>
-    </div>
-
-    <div class="section-block">
-      <h3>Vídeo do YouTube</h3>
-      <div class="video-frame">
-        <iframe src="https://www.youtube-nocookie.com/embed/ID_DO_VIDEO"
-          title="Vídeo do projeto" loading="lazy"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          allowfullscreen></iframe>
-      </div>
-    </div>
-  </section>
-  -->
 </main>
 
 <footer><strong>Portfólio SENAI-SP</strong> · Roberto Campos dos Reis Junior · São Carlos - SP</footer>
+
+<!-- SCRIPT PARA O CARROSSEL FUNCIONAR -->
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const carousels = document.querySelectorAll(".carousel-wrapper");
+
+    carousels.forEach(wrapper => {
+      const track = wrapper.querySelector(".carousel-track");
+      const prevBtn = wrapper.querySelector(".prev-btn");
+      const nextBtn = wrapper.querySelector(".next-btn");
+
+      if (prevBtn && nextBtn && track) {
+        // Avançar
+        nextBtn.addEventListener("click", () => {
+          const slideWidth = track.clientWidth;
+          track.scrollBy({ left: slideWidth, behavior: "smooth" });
+        });
+
+        // Voltar
+        prevBtn.addEventListener("click", () => {
+          const slideWidth = track.clientWidth;
+          track.scrollBy({ left: -slideWidth, behavior: "smooth" });
+        });
+      }
+    });
+  });
+</script>
 </body>
 </html>
+```eof
+
+Basta copiar todo o bloco de código acima e substituir o conteúdo do seu `index.html` no GitHub. 
+
+**Observação:** No bloco da galeria, eu coloquei exemplos como `hannover_2.jpg`, `hannover_3.jpg`, etc. Certifique-se de alterar os nomes dos arquivos lá dentro da tag `<div class="carousel-track">` para corresponderem exatamente aos nomes das fotos que você fez o upload na sua pasta `images/hannover/`.
