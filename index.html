@@ -9,117 +9,213 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--senai-red:#ff0000;--senai-red-dark:#c90000;--charcoal:#333333;--gray:#4d4d4d;--header-gray:#eeeeee;--page-gray:#f5f5f5;--white:#ffffff;--text:#252525;--muted:#626262;--border:#dedede;--shadow:0 10px 28px rgba(0,0,0,.09)}
-*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}
-body{margin:0;color:var(--text);background:var(--page-gray);font-family:"Montserrat",Arial,sans-serif;line-height:1.6}a{color:inherit}
+:root{
+  --senai-red:#ff0000;
+  --senai-red-dark:#c90000;
+  --charcoal:#333333;
+  --gray:#4d4d4d;
+  --header-gray:#eeeeee;
+  --page-gray:#f5f5f5;
+  --white:#ffffff;
+  --text:#252525;
+  --muted:#626262;
+  --border:#dedede;
+  --shadow:0 8px 24px rgba(0,0,0,.06);
+  --shadow-hover:0 14px 32px rgba(0,0,0,.12);
+  --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;color:var(--text);background:var(--page-gray);font-family:"Montserrat",Arial,sans-serif;line-height:1.6}
+a{color:inherit;text-decoration:none}
+
+/* Header & Topbar */
 .topbar{background:var(--header-gray);border-bottom:4px solid var(--senai-red)}
 .topbar-inner{max-width:1180px;margin:0 auto;padding:20px 28px;display:flex;align-items:center;gap:28px}
-.brand{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:9px 14px;background:var(--senai-red);border-radius:2px;text-decoration:none}
-.brand img{display:block;width:min(240px,32vw);height:auto}.identity{min-width:0}
+.brand{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:9px 18px;background:var(--senai-red);border-radius:4px;transition:var(--transition);color:#fff;font-weight:800;font-size:1.3rem;letter-spacing:1px}
+.brand:hover{background:var(--senai-red-dark);transform:scale(1.02)}
+.brand img{display:block;width:min(240px,32vw);height:auto}
+.identity{min-width:0}
 .identity h1{margin:0 0 8px;color:var(--charcoal);font-size:clamp(1.2rem,2.25vw,1.9rem);font-weight:800;line-height:1.25;letter-spacing:-.035em}
 .identity .name{margin:0;font-size:clamp(.9rem,1.25vw,1.05rem);font-weight:700;color:var(--senai-red-dark)}
 .identity .details{margin:3px 0 0;color:var(--gray);font-size:.84rem;font-weight:500;line-height:1.55}
-nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20}
-.nav-inner{max-width:1180px;margin:auto;padding:0 28px;display:flex;gap:8px;flex-wrap:wrap}
-nav a{display:inline-block;padding:13px 14px;color:var(--charcoal);text-decoration:none;font-size:.82rem;font-weight:700;border-bottom:3px solid transparent}
-nav a:hover,nav a:focus-visible{color:var(--senai-red-dark);border-bottom-color:var(--senai-red)}
-main{max-width:1180px;margin:0 auto;padding:34px 28px 64px}
-.intro,.section-panel{background:var(--white);border-radius:10px;box-shadow:var(--shadow)}
-.intro{padding:26px 28px;margin-bottom:28px;border-left:6px solid var(--senai-red)}
-.intro h2{margin:0 0 7px;font-size:1.25rem}.intro p{margin:0;color:var(--muted);white-space:pre-line}
-.section-panel{margin-top:24px;padding:28px;border:1px solid var(--border);scroll-margin-top:84px}
-.section-panel h2{margin:0 0 12px;color:var(--charcoal);font-size:1.35rem;line-height:1.3}
-.section-text{margin:0;color:var(--muted);white-space:pre-line}
-.section-block{margin-top:24px}.section-block h3{margin:0 0 10px;color:var(--charcoal);font-size:1rem}
-.file-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
-.file-item{min-width:0;padding:14px;border:1px solid var(--border);border-radius:8px;background:var(--page-gray)}
-.file-item a{color:var(--senai-red-dark);font-weight:700;overflow-wrap:anywhere}.file-item p{margin:6px 0 0;color:var(--muted);font-size:.85rem}
-.image-preview{display:block;width:100%;max-height:420px;margin-top:10px;object-fit:contain;background:var(--white);border-radius:6px}
-.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--page-gray);border-radius:8px;overflow:hidden}
-.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-align:center;font-size:.82rem}footer strong{color:#ff7373}
-@media(max-width:900px){.topbar-inner{align-items:flex-start}.brand img{width:170px}}
-@media(max-width:620px){.topbar-inner{padding:18px 18px 20px;flex-direction:column;gap:15px}.brand img{width:190px}.identity h1{font-size:1.35rem}.identity .details{font-size:.8rem}.nav-inner{padding:0 12px;gap:0}nav a{padding:12px 9px;font-size:.76rem}main{padding:24px 16px 44px}.intro,.section-panel{padding:21px 18px}}
 
-/* =========================================
-   ESTRUTURA LADO A LADO (GRID/FLEX)
-   ========================================= */
+/* Navigation */
+nav{background:rgba(255,255,255,0.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;box-shadow:0 2px 10px rgba(0,0,0,0.03)}
+.nav-inner{max-width:1180px;margin:auto;padding:0 28px;display:flex;gap:4px;flex-wrap:wrap}
+nav a{display:inline-block;padding:14px 16px;color:var(--charcoal);font-size:.84rem;font-weight:700;position:relative;transition:var(--transition)}
+nav a::after{content:'';position:absolute;bottom:0;left:50%;width:0;height:3px;background:var(--senai-red);transition:var(--transition);transform:translateX(-50%)}
+nav a:hover{color:var(--senai-red-dark)}
+nav a:hover::after{width:100%}
+
+/* Layout Principal */
+main{max-width:1180px;margin:0 auto;padding:34px 28px 64px}
+.intro,.section-panel{background:var(--white);border-radius:12px;box-shadow:var(--shadow);transition:var(--transition)}
+.intro{padding:28px 32px;margin-bottom:28px;border-left:6px solid var(--senai-red)}
+.intro h2{margin:0 0 10px;font-size:1.35rem;color:var(--charcoal)}
+.intro p{margin:0;color:var(--muted);white-space:pre-line}
+
+.section-panel{margin-top:28px;padding:32px;border:1px solid var(--border);scroll-margin-top:84px}
+.section-panel:hover{box-shadow:var(--shadow-hover)}
+.section-panel h2{margin:0 0 16px;color:var(--charcoal);font-size:1.45rem;line-height:1.3;position:relative;display:inline-block}
+.section-panel h2::after{content:'';display:block;width:40px;height:3px;background:var(--senai-red);margin-top:6px;border-radius:2px}
+.section-text{margin:0 0 12px;color:var(--muted);white-space:pre-line}
+.section-block{margin-top:24px}
+.section-block h3{margin:0 0 12px;color:var(--charcoal);font-size:1.05rem;font-weight:700}
+
+/* Cards & Arquivos PDF */
+.file-list{display:grid;grid-template-columns:1fr;gap:12px}
+.file-item{
+  display:flex;
+  flex-direction:column;
+  padding:16px;
+  border:1px solid var(--border);
+  border-radius:10px;
+  background:var(--page-gray);
+  height:100%;
+  transition:var(--transition);
+}
+.file-item:hover{transform:translateY(-3px);border-color:#ccc;box-shadow:0 6px 16px rgba(0,0,0,0.06)}
+.file-item a{color:var(--senai-red-dark);font-weight:700;overflow-wrap:anywhere;display:inline-block;margin-bottom:8px;transition:var(--transition)}
+.file-item a:hover{color:var(--senai-red)}
+.file-item p{margin:8px 0 0;color:var(--muted);font-size:.85rem;margin-top:auto}
+.image-preview{
+  display:block;
+  width:100%;
+  height:200px;
+  object-fit:cover;
+  background:var(--white);
+  border-radius:6px;
+  border:1px solid var(--border);
+}
+
+/* Vídeos Enquadrados */
+.video-frame{
+  position:relative;
+  width:100%;
+  aspect-ratio:16/9;
+  background:var(--charcoal);
+  border-radius:10px;
+  overflow:hidden;
+  border:1px solid var(--border);
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
+}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+/* Grid & Alinhamento Lado a Lado */
 .media-row {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+  margin-top: 20px;
+}
+@media(min-width: 850px) {
+  .media-row {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    align-items: stretch;
+  }
+}
+.media-col {
   display: flex;
   flex-direction: column;
-  gap: 20px;
-  margin-top: 15px;
-}
-@media(min-width: 800px) {
-  .media-row {
-    flex-direction: row;
-    align-items: flex-start; /* Alinha o conteúdo no topo */
-  }
-  .media-col {
-    flex: 1;
-    min-width: 0;
-  }
+  min-width: 0;
+  height: 100%;
 }
 
-/* =========================================
-   ESTILOS DO CARROSSEL DE IMAGENS
-   ========================================= */
+/* Carrossel de Fotos Otimizado */
 .carousel-wrapper {
   position: relative;
   width: 100%;
+  height: 100%;
   display: flex;
   align-items: center;
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--charcoal);
+  border: 1px solid var(--border);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 .carousel-track {
   display: flex;
+  width: 100%;
+  height: 100%;
+  min-height: 220px;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   scroll-behavior: smooth;
-  gap: 15px;
-  border-radius: 8px;
-  scrollbar-width: none; /* Firefox */
-  background: var(--page-gray);
-  padding: 10px;
-  border: 1px solid var(--border);
+  scrollbar-width: none;
 }
-.carousel-track::-webkit-scrollbar {
-  display: none; /* Chrome e Safari */
-}
+.carousel-track::-webkit-scrollbar { display: none; }
+
 .carousel-img {
   flex: 0 0 100%;
   width: 100%;
-  height: auto;
-  max-height: 420px; /* Ajustado para alinhar melhor com a caixa do PDF */
-  object-fit: contain;
-  scroll-snap-align: center;
-  border-radius: 6px;
-  background: var(--white);
+  height: 100%;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  scroll-snap-align: start;
+  background: var(--charcoal);
 }
+
 .carousel-btn {
   position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   z-index: 10;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: white;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: var(--white);
   border: none;
   border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
+  width: 38px;
+  height: 38px;
+  font-size: 16px;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: background-color 0.3s ease;
+  transition: var(--transition);
+  backdrop-filter: blur(4px);
 }
 .carousel-btn:hover {
-  background-color: rgba(201, 0, 0, 0.9);
+  background-color: var(--senai-red);
+  transform: translateY(-50%) scale(1.1);
 }
-.prev-btn { left: 20px; }
-.next-btn { right: 20px; }
+.prev-btn { left: 12px; }
+.next-btn { right: 12px; }
+
+/* Placeholder visuais para imagens/vídeos */
+.placeholder-media {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16/9;
+  background: linear-gradient(135deg, #2c3e50, #3498db);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 10px;
+}
+
+/* Rodapé */
+footer{padding:32px 20px;background:var(--charcoal);color:var(--white);text-align:center;font-size:.85rem;margin-top:40px}
+footer strong{color:#ff6b6b}
+
+/* Responsividade */
+@media(max-width:900px){.topbar-inner{align-items:flex-start}.brand img{width:170px}}
 @media(max-width:620px){
-  .carousel-btn { width: 35px; height: 35px; font-size: 16px; }
-  .prev-btn { left: 10px; }
-  .next-btn { right: 10px; }
+  .topbar-inner{padding:18px 18px 20px;flex-direction:column;gap:15px}
+  .brand img{width:190px}
+  .identity h1{font-size:1.35rem}
+  .identity .details{font-size:.8rem}
+  .nav-inner{padding:0 12px;gap:0}
+  nav a{padding:12px 10px;font-size:.78rem}
+  main{padding:20px 14px 44px}
+  .intro,.section-panel{padding:20px 16px}
+  .carousel-btn { width: 32px; height: 32px; font-size: 14px; }
 }
 </style>
 </head>
@@ -127,7 +223,7 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
 <header class="topbar" id="inicio">
   <div class="topbar-inner">
     <a class="brand" href="#inicio" aria-label="SENAI-SP - início">
-      <img src="images/general/senai-sp.png" alt="Logo SENAI-SP" onerror="this.style.display='none';">
+      SENAI
     </a>
     <div class="identity">
       <h1>Portfólio de atividades desenvolvidas no SENAI - SP</h1>
@@ -148,9 +244,6 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
     <a href="#SAEP">SAEP</a>
     <a href="#Projetos">Projetos</a>
     <a href="#Eventos">Eventos</a>
-    <!-- Para cada nova seção, adicione um link, por exemplo:
-    <a href="projeto</a>
-    -->
   </div>
 </nav>
 
@@ -166,30 +259,30 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
   </section>
 
   <!-- SEÇÃO HANNOVER -->
-  <section class="section-panel" id=Hannover">
+  <section class="section-panel" id="Hannover">
     <h2>Hannover Messe</h2>
     
     <div class="section-block">
       <p class="section-text">Especialista convidado para Missão de Prospecção Tecnológica na "Hannover Messe - 2026", maior feira de automação industrial internacional sediada em Hannover - Alemanha.</p>
-      A missão teve como objetivo a prospecção tecnológica nas áreas de: automação industrial, Inteligência Artificial, Robótica Humanóide e Eficiência Energética.</p>
+      <p class="section-text">A missão teve como objetivo a prospecção tecnológica nas áreas de: automação industrial, Inteligência Artificial, Robótica Humanóide e Eficiência Energética.</p>
       <p class="section-text">Após esta experiência, busquei disseminar os conhecimentos adquiridos e, junto a equipe escolar, estamos implementando um plano de ação, baseado nas tecnologias exploradas na feira internacional, 
          para avançar em direção aos conceitos de virtualização, inteligência artificial e conectividade.</p>
       <p class="section-text">Para o ano de 2026 a meta é aplicar os conceitos de realidade virtual e aumentada, inteligência artificial agêntica e generativa, conectividade e big data, para digitalização de máquinas e ambientes,
-         integrando o desenvolvimento e aplicação destes conceitos com as unidades curriculares de diferentes cursos e aplicando situações desafiadoras alinhadas com desafios reais da indústria. </p><br>
-      <p class="section-text">Os resultados deste plano de ação você confere neste portfólio, nas imagens, vídeos e depoimentos. Para uma demonstração do trabalho, acesse o QR Code ou link: https://senaisaocarlos.github.io/tormax30/ </p>
+         integrando o desenvolvimento e aplicação destes conceitos com as unidades curriculares de diferentes cursos e aplicando situações desafiadoras alinhadas com desafios reais da indústria. </p>
+      <p class="section-text">Os resultados deste plano de ação você confere neste portfólio, nas imagens, vídeos e depoimentos. Para uma demonstração do trabalho, acesse o QR Code ou link: <a href="https://senaisaocarlos.github.io/tormax30/" target="_blank" style="color:var(--senai-red-dark); font-weight:700;">https://senaisaocarlos.github.io/tormax30/</a></p>
     </div>
     
-    <!-- Bloco Lado a Lado: PDF e Carrossel -->
+    <!-- Bloco Lado a Lado: PDF, Carrossel e Vídeo -->
     <div class="section-block">
       <div class="media-row">
         
         <!-- COLUNA 1: Relatório em PDF -->
         <div class="media-col">
           <h3>Relatório da Missão Tecnológica</h3>
-          <div class="file-list" style="grid-template-columns: 1fr;"> <!-- Força o item a ocupar toda a coluna -->
+          <div class="file-list">
             <article class="file-item">
-              <a href="documentos/relatorio-hannover-2026.pdf" target="_blank" rel="noopener">Abrir relatório em PDF</a>
-              <img class="image-preview" src="images/general/hannover-messe.png" alt="Relatório Hannover Messe 2026">
+              <a href="#" target="_blank" rel="noopener">Abrir relatório em PDF ➔</a>
+              <div class="placeholder-media" style="background: linear-gradient(135deg, #c90000, #ff4d4d);">Boletim Tecnológico Hannover Messe</div>
               <p>Boletim Tecnológico Hannover Messe 2026</p>
             </article>
           </div>
@@ -200,26 +293,19 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
           <h3>Galeria de Fotos - Hannover</h3>
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
-            
             <div class="carousel-track">
-              <!-- Suas imagens aqui. Adicione mais tags <img> se necessário -->
-              <img class="carousel-img" src="images/hannover/hannover_1.jpg" alt="Foto 1 em Hannover">
-              <img class="carousel-img" src="images/hannover/hannover_2.jpg" alt="Foto 2 em Hannover">
-              <img class="carousel-img" src="images/hannover/hannover_3.jpg" alt="Foto 3 em Hannover">
-              <img class="carousel-img" src="images/hannover/hannover_4.JPG" alt="Foto 4 em Hannover">
-              <img class="carousel-img" src="images/hannover/hannover_5.JPG" alt="Foto 5 em Hannover">
-              <img class="carousel-img" src="images/hannover/hannover_6.JPG" alt="Foto 6 em Hannover">
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #1e3c72, #2a5298);">Foto 1 - Hannover Messe</div>
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #00b09b, #96c93d);">Foto 2 - Estande Robótica</div>
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #ee0979, #ff6a00);">Foto 3 - IA e Automação</div>
             </div>
-            
             <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
           </div>
         </div>
 
-      <!-- COLUNA 3: Vídeo do YouTube -->
+        <!-- COLUNA 3: Vídeo do YouTube -->
         <div class="media-col">
-          <h3>Depoimento Professor Luciano Trevisan</h3>
+          <h3>Depoimento Prof. Luciano Trevisan</h3>
           <div class="video-frame">
-            <!-- Substitua "ID_DO_VIDEO" pelo código real do seu vídeo -->
             <iframe 
               src="https://www.youtube.com/embed/sXXoz9IW0d8" 
               title="Depoimento Professor Luciano Trevisan" 
@@ -239,20 +325,18 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
     <h2>Rede de Mobilizadores de Tecnologias Educacionais</h2>
     
     <div class="section-block">
-      <p class="section-text"> Como Mobilizador de Tecnologias Educacionais na Unidade, atuei diretamente na organização e execução dos projetos de ação da ReMoTe, capacitando docentes, disseminando tecnologias educacionais e compartilhando boas práticas educacionais.</p>
-      <p class="section-text"> Entre 2024 e 2025 foi planejado e executado, gradativamente, um plano de ação para capacitação, validação e multiplicação de boas práticas pedagógicas e uso de tecnologias educacionais.
-      O resultado pode ser conferido no vídeo e com os depoimentos dos colegas que me apoiaram neste projeto</p>
+      <p class="section-text">Como Mobilizador de Tecnologias Educacionais na Unidade, atuei diretamente na organização e execução dos projetos de ação da ReMoTe, capacitando docentes, disseminando tecnologias educacionais e compartilhando boas práticas educacionais.</p>
+      <p class="section-text">Entre 2024 e 2025 foi planejado e executado, gradativamente, um plano de ação para capacitação, validação e multiplicação de boas práticas pedagógicas e uso de tecnologias educacionais.
+      O resultado pode ser conferido no vídeo e com os depoimentos dos colegas que me apoiaram neste projeto.</p>
     </div>
     
-    <!-- Bloco Lado a Lado: PDF e Carrossel -->
     <div class="section-block">
       <div class="media-row">
         
         <!-- COLUNA 1: Vídeo do YouTube -->
         <div class="media-col">
-          <h3>Projeto Integrado de Tecnologias Educacionais e Boas práticas do CFP 6.01 - São Carlos</h3>
+          <h3>Projeto Integrado CFP 6.01</h3>
           <div class="video-frame">
-            <!-- Substitua "ID_DO_VIDEO" pelo código real do seu vídeo -->
             <iframe 
               src="https://www.youtube.com/embed/XYa-U0BqFR4" 
               title="Projeto Integrado ReMoTe - CFP 6.01" 
@@ -268,16 +352,10 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
           <h3>Galeria de Fotos - ReMoTe</h3>
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
-            
             <div class="carousel-track">
-              <!-- Suas imagens aqui. Adicione mais tags <img> se necessário -->
-              <img class="carousel-img" src="images/remote/remote_1.jpg" alt="Foto 1 em remote">
-              <img class="carousel-img" src="images/remote/remote_2.jpg" alt="Foto 2 em remote">
-              <img class="carousel-img" src="images/remote/remote_3.jpg" alt="Foto 3 em remote">
-              <img class="carousel-img" src="images/remote/remote_4.jpg" alt="Foto 4 em remote">
-              <img class="carousel-img" src="images/remote/remote_5.jpg" alt="Foto 5 em remote">
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #4776E6, #8E54E9);">Foto 1 - ReMoTe Oficina</div>
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #FF8008, #FFC837);">Foto 2 - Capacitação Docente</div>
             </div>
-            
             <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
           </div>
         </div>
@@ -286,7 +364,6 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
         <div class="media-col">
           <h3>Depoimento Primo Melaré</h3>
           <div class="video-frame">
-            <!-- Substitua "ID_DO_VIDEO" pelo código real do seu vídeo -->
             <iframe 
               src="https://www.youtube.com/embed/WMQHe7Gb0k4" 
               title="Depoimento Especialista Primo Melaré" 
@@ -301,78 +378,24 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
     </div>
   </section>
 
- <!-- SEÇÃO SP SKILLS -->
-  <section class="section-panel" id="SP Skills">
-    <h2>SP Skills</h2>
-    
-    <div class="section-block">
-      <p class="section-text"> escrever aqui </p>
-    </div>
-    
-    <!-- Bloco Lado a Lado: vídeo e Carrossel -->
-    <div class="section-block">
-      <div class="media-row">
-        
-        <!-- COLUNA 1: Vídeo do YouTube -->
-        <div class="media-col">
-          <h3> Depoimento de Colegas </h3>
-          <div class="video-frame">
-            <!-- Substitua "ID_DO_VIDEO" pelo código real do seu vídeo -->
-            <iframe 
-              src="https://www.youtube.com/embed/bjUW_zdbuY4" 
-              title="SP Skills - Depoimento Professor Bruno" 
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-         
-        <!-- COLUNA 2: Carrossel de Fotos -->
-        <div class="media-col">
-          <h3>Galeria de Fotos - SP Skills</h3>
-          <div class="carousel-wrapper">
-            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
-            
-            <div class="carousel-track">
-              <!-- Suas imagens aqui. Adicione mais tags <img> se necessário -->
-              <img class="carousel-img" src="images/spskills/olimpiada_1.jpeg" alt="Foto 1 em SP Skills">
-              <img class="carousel-img" src="images/spskills/olimpiada_2.jpeg" alt="Foto 2 em SP Skills">
-              <img class="carousel-img" src="images/spskills/olimpiada_3.jpeg" alt="Foto 3 em SP Skills">
-              <img class="carousel-img" src="images/spskills/olimpiada_4.jpeg" alt="Foto 4 em SP Skills">
-              </div>
-            
-            <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-   <!-- SEÇÃO SAGA SENAI -->
+  <!-- SEÇÃO SAGA SENAI -->
   <section class="section-panel" id="Saga SENAI">
     <h2>Saga SENAI de Inovação</h2>
     
     <div class="section-block">
-      <p class="section-text"> Estando, atualmente, na posição de Embaixador Sênior de Inovação na Unidade atuo ativamente, desde minha chegada a instituição, para divulgação e aplicação dos programas da Saga SENAI de Inovação, integrando docentes, alunos e empresas para solução de desafios reais da indústria.</p>
-      <p class="section-text"> Em parceria com o Up Lab, consultores e empresas parceiras, promovemos o Desafio de Ideias, vinculamos unidades curriculares aos programas Inova e Integra, 
-         competimos no Granprix de Inovação e estamos ativamente fazendo a ponte entre ensino e indústria por meio das demandas da Saga SENAI incorporadas as unidades curriculares e suas situações desafiadoras na aprendizagem.</p>
-      <p class="section-text"> Estando na posição de Embaixador Sênior de Inovação na Unidade, atuo ativamente para disseminação e aplicação dos programas e desafios da Saga SENAI de Inovação, integrando docentes, alunos e empresas para solução de desafios reais da indústria.</p>
+      <p class="section-text">Estando, atualmente, na posição de Embaixador Sênior de Inovação na Unidade atuo ativamente, desde minha chegada a instituição, para divulgação e aplicação dos programas da Saga SENAI de Inovação, integrando docentes, alunos e empresas para solução de desafios reais da indústria.</p>
     </div>
     
-    <!-- Bloco Lado a Lado: vídeo e Carrossel -->
     <div class="section-block">
       <div class="media-row">
         
         <!-- COLUNA 1: Vídeo do YouTube -->
         <div class="media-col">
-          <h3>Depoimento dos Alunos sobre o Desafio de Ideias</h3>
+          <h3>Desafio de Ideias - Alunos</h3>
           <div class="video-frame">
-            <!-- Substitua "ID_DO_VIDEO" pelo código real do seu vídeo -->
             <iframe 
               src="https://www.youtube.com/embed/8Duq8Bf-h-w" 
-              title="Depoimento dos Alunos sobre o Desasfio de Ideias" 
+              title="Depoimento dos Alunos sobre o Desafio de Ideias" 
               loading="lazy"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen>
@@ -385,24 +408,18 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
           <h3>Galeria de Fotos - Saga SENAI</h3>
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
-            
             <div class="carousel-track">
-              <!-- Suas imagens aqui. Adicione mais tags <img> se necessário -->
-              <img class="carousel-img" src="images/desafio-ideias/desafio-ideias_1.jpg" alt="Foto 1 em saga senai">
-              <img class="carousel-img" src="images/desafio-ideias/desafio-ideias_2.jpg" alt="Foto 2 em saga senai">
-              <img class="carousel-img" src="images/desafio-ideias/desafio-ideias_3.png" alt="Foto 3 em saga senai">
-              <img class="carousel-img" src="images/desafio-ideias/desafio-ideias_4.png" alt="Foto 4 em saga senai">
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #11998e, #38ef7d);">Foto 1 - Desafio de Ideias</div>
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #3a7bd5, #3a6073);">Foto 2 - Pitch de Inovação</div>
             </div>
-            
             <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
           </div>
         </div>
 
-          <!-- COLUNA 3: Vídeo do YouTube -->
+        <!-- COLUNA 3: Vídeo do YouTube -->
         <div class="media-col">
-          <h3>Depoimento Professor Yuri</h3>
+          <h3>Depoimento Prof. Yuri</h3>
           <div class="video-frame">
-            <!-- Substitua "ID_DO_VIDEO" pelo código real do seu vídeo -->
             <iframe 
               src="https://www.youtube.com/embed/GxqMAoTlE9U" 
               title="Depoimento Professor Yuri" 
@@ -417,174 +434,12 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
     </div>
   </section>
 
- <!-- SEÇÃO SAEP -->
-  <section class="section-panel" id="SAEP">
-    <h2>SAEP & PROVEI</h2>
-    
-    <div class="section-block">
-    
-      <p class="section-text"> escreva aqui.</p>
-    </div>
-    
-    <!-- Bloco Lado a Lado: vídeo e Carrossel -->
-    <div class="section-block">
-      <div class="media-row"
-
-          <!-- COLUNA 1: Vídeo do YouTube -->
-        <div class="media-col">
-          <h3>Depoimento Professor Wesley</h3>
-          <div class="video-frame">
-            <!-- Substitua "ID_DO_VIDEO" pelo código real do seu vídeo -->
-            <iframe 
-              src="https://www.youtube.com/embed/lYasC7OpddM" 
-              title="Depoimento Professor Wesley" 
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-         
-        <!-- COLUNA 2: Carrossel de Fotos -->
-        <div class="media-col">
-          <h3>Galeria de Fotos - SAEP & PROVEI</h3>
-          <div class="carousel-wrapper">
-            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
-            
-            <div class="carousel-track">
-              <!-- Suas imagens aqui. Adicione mais tags <img> se necessário -->
-              <img class="carousel-img" src="images/saep/saep_1.jpg" alt="Foto 1 em SAEP">
-              <img class="carousel-img" src="images/saep/saep_2.jpg" alt="Foto 2 em SAEP">
-              <img class="carousel-img" src="images/saep/saep_3.jpg" alt="Foto 3 em SAEP">
-              <img class="carousel-img" src="images/saep/saep_4.jpg" alt="Foto 4 em SAEP">
-              <img class="carousel-img" src="images/saep/saep_5.jpg" alt="Foto 5 em SAEP">
-            </div>
-            
-            <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-   <!-- SEÇÃO PROJETOS DA UNIDADE -->
-  <section class="section-panel" id="Projetos">
-    <h2>Projetos Internos da Unidade</h2>
-    
-    <div class="section-block">
-   
-      <p class="section-text">escreva aqui.</p>
-    </div>
-    
-    <!-- Bloco Lado a Lado: vídeo e Carrossel -->
-    <div class="section-block">
-      <div class="media-row">
-        
-        <!-- COLUNA 1: Vídeo do YouTube -->
-        <div class="media-col">
-          <h3>Depoimento dos Projetos Internos Desenvolvidos na Unidade</h3>
-          <div class="video-frame">
-            <!-- Substitua "ID_DO_VIDEO" pelo código real do seu vídeo -->
-            <iframe 
-              src="https://www.youtube.com/embed/" 
-              title="Depoimento dos Projetos Internos Desenvolvidos na Unidade" 
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-         
-        <!-- COLUNA 2: Carrossel de Fotos -->
-        <div class="media-col">
-          <h3>Galeria de Fotos - Projetos Internos</h3>
-          <div class="carousel-wrapper">
-            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
-            
-            <div class="carousel-track">
-              <!-- Suas imagens aqui. Adicione mais tags <img> se necessário -->
-              <img class="carousel-img" src=" " alt="Foto 1 de Projetos">
-            </div>
-            
-            <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-      <!-- SEÇÃO EVENTOS DA UNIDADE -->
-  <section class="section-panel" id="Eventos">
-    <h2>Eventos</h2>
-    
-    <div class="section-block">
-   
-      <p class="section-text">escreva aqui.</p>
-    </div>
-    
-    <!-- Bloco Lado a Lado: vídeo e Carrossel -->
-    <div class="section-block">
-      <div class="media-row">
-        
-        <!-- COLUNA 1: Vídeo do YouTube -->
-        <div class="media-col">
-          <h3>Depoimento dos Eventos na Unidade</h3>
-          <div class="video-frame">
-            <!-- Substitua "ID_DO_VIDEO" pelo código real do seu vídeo -->
-            <iframe 
-              src="https://www.youtube.com/embed/q_XuN53JmiQ" 
-              title="Depoimento dos Eventos na Unidade" 
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-         
-        <!-- COLUNA 2: Carrossel de Fotos -->
-        <div class="media-col">
-          <h3>Galeria de Fotos - Eventos na Unidade</h3>
-          <div class="carousel-wrapper">
-            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
-            
-            <div class="carousel-track">
-              <!-- Suas imagens aqui. Adicione mais tags <img> se necessário -->
-              <img class="carousel-img" src="images/eventos/celebra-saber_1.jpg" alt="Foto 1 de Eventos">
-              <img class="carousel-img" src="images/eventos/celebra-saber_2.jpg" alt="Foto 2 de Eventos">
-              <img class="carousel-img" src="images/eventos/divulgacao_1.jpg" alt="Foto 3 de Eventos">
-              <img class="carousel-img" src="images/eventos/divulgacao_2.jpg" alt="Foto 4 de Eventos">
-              <img class="carousel-img" src="images/eventos/divulgacao_3.jpg" alt="Foto 5 de Eventos">
-            </div>
-            
-            <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
-          </div>
-        </div>
-
-         <!-- COLUNA 3: Vídeo do YouTube -->
-        <div class="media-col">
-          <h3>Depoimento dos Eventos na Unidade</h3>
-          <div class="video-frame">
-            <!-- Substitua "ID_DO_VIDEO" pelo código real do seu vídeo -->
-            <iframe 
-              src="https://www.youtube.com/embed/Xxw-bKuGPVw" 
-              title="Depoimento Professor Rafael Baldo" 
-              loading="lazy"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-   
 </main>
 
-<footer><strong>Portfólio SENAI-SP</strong> · Roberto Campos dos Reis Junior · São Carlos - SP</footer>
+<footer>
+  <strong>Portfólio SENAI-SP</strong> · Roberto Campos dos Reis Junior · São Carlos - SP
+</footer>
 
-<!-- SCRIPT PARA O CARROSSEL FUNCIONAR -->
 <script>
   document.addEventListener("DOMContentLoaded", () => {
     const carousels = document.querySelectorAll(".carousel-wrapper");
@@ -595,15 +450,13 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
       const nextBtn = wrapper.querySelector(".next-btn");
 
       if (prevBtn && nextBtn && track) {
-        // Avançar
         nextBtn.addEventListener("click", () => {
-          const slideWidth = track.clientWidth;
+          const slideWidth = track.firstElementChild ? track.firstElementChild.clientWidth : track.clientWidth;
           track.scrollBy({ left: slideWidth, behavior: "smooth" });
         });
 
-        // Voltar
         prevBtn.addEventListener("click", () => {
-          const slideWidth = track.clientWidth;
+          const slideWidth = track.firstElementChild ? track.firstElementChild.clientWidth : track.clientWidth;
           track.scrollBy({ left: -slideWidth, behavior: "smooth" });
         });
       }
