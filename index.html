@@ -110,10 +110,15 @@ main{max-width:1180px;margin:0 auto;padding:34px 28px 64px}
   gap: 24px;
   margin-top: 20px;
 }
-@media(min-width: 850px) {
+@media(min-width: 600px) {
   .media-row {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(2, 1fr);
     align-items: stretch;
+  }
+}
+@media(min-width: 1024px) {
+  .media-row {
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   }
 }
 .media-col {
@@ -121,6 +126,13 @@ main{max-width:1180px;margin:0 auto;padding:34px 28px 64px}
   flex-direction: column;
   min-width: 0;
   height: 100%;
+  justify-content: flex-start;
+}
+.media-col > h3 {
+  margin: 0 0 12px;
+  min-height: 2.6em;
+  display: flex;
+  align-items: flex-end;
 }
 
 /* Carrossel de Fotos Otimizado */
@@ -128,6 +140,7 @@ main{max-width:1180px;margin:0 auto;padding:34px 28px 64px}
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 200px;
   display: flex;
   align-items: center;
   border-radius: 10px;
@@ -244,6 +257,7 @@ footer strong{color:#ff6b6b}
     <a href="#SAEP">SAEP</a>
     <a href="#Projetos">Projetos</a>
     <a href="#Eventos">Eventos</a>
+    <a href="#Proeducador">Proeducador</a>
   </div>
 </nav>
 
@@ -272,7 +286,7 @@ footer strong{color:#ff6b6b}
       <p class="section-text">Os resultados deste plano de ação você confere neste portfólio, nas imagens, vídeos e depoimentos. Para uma demonstração do trabalho, acesse o QR Code ou link: <a href="https://senaisaocarlos.github.io/tormax30/" target="_blank" style="color:var(--senai-red-dark); font-weight:700;">https://senaisaocarlos.github.io/tormax30/</a></p>
     </div>
     
-    <!-- Bloco Lado a Lado: PDF, Carrossel e Vídeo -->
+    <!-- Bloco Lado a Lado: PDF, QR Code, Carrossel e Vídeo -->
     <div class="section-block">
       <div class="media-row">
         
@@ -288,7 +302,22 @@ footer strong{color:#ff6b6b}
           </div>
         </div>
 
-        <!-- COLUNA 2: Carrossel de Fotos -->
+        <!-- COLUNA 2: QR Code e Link -->
+        <div class="media-col">
+          <h3>Acesse pelo QR Code ou Link</h3>
+          <div class="file-list">
+            <article class="file-item" style="text-align: center;">
+              <a href="https://senaisaocarlos.github.io/tormax30/" target="_blank" rel="noopener">Acessar Demonstração ➔</a>
+              <!-- Espaço para a imagem do QR Code. Você pode substituir este placeholder por: <img src="caminho/qr-code.png" alt="QR Code" class="image-preview"> -->
+              <div class="placeholder-media" style="background: linear-gradient(135deg, #2c3e50, #4ca1af);">
+                [ Insira a Imagem do QR Code Aqui ]
+              </div>
+              <p>Escaneie o QR Code ou clique no link acima</p>
+            </article>
+          </div>
+        </div>
+
+        <!-- COLUNA 3: Carrossel de Fotos -->
         <div class="media-col">
           <h3>Galeria de Fotos - Hannover</h3>
           <div class="carousel-wrapper">
@@ -302,7 +331,7 @@ footer strong{color:#ff6b6b}
           </div>
         </div>
 
-        <!-- COLUNA 3: Vídeo do YouTube -->
+        <!-- COLUNA 4: Vídeo do YouTube -->
         <div class="media-col">
           <h3>Depoimento Prof. Luciano Trevisan</h3>
           <div class="video-frame">
@@ -333,7 +362,7 @@ footer strong{color:#ff6b6b}
     <div class="section-block">
       <div class="media-row">
         
-        <!-- COLUNA 1: Vídeo do YouTube -->
+        <!-- COLUNA 1: Vídeo do YouTube 1 -->
         <div class="media-col">
           <h3>Projeto Integrado CFP 6.01</h3>
           <div class="video-frame">
@@ -346,8 +375,22 @@ footer strong{color:#ff6b6b}
             </iframe>
           </div>
         </div>
+
+        <!-- COLUNA 2: Vídeo do YouTube 2 (Novo) -->
+        <div class="media-col">
+          <h3>Vídeo ReMoTe</h3>
+          <div class="video-frame">
+            <iframe 
+              src="https://www.youtube.com/embed/seu_codigo_aqui" 
+              title="Vídeo ReMoTe" 
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
          
-        <!-- COLUNA 2: Carrossel de Fotos -->
+        <!-- COLUNA 3: Carrossel de Fotos -->
         <div class="media-col">
           <h3>Galeria de Fotos - ReMoTe</h3>
           <div class="carousel-wrapper">
@@ -360,7 +403,7 @@ footer strong{color:#ff6b6b}
           </div>
         </div>
 
-        <!-- COLUNA 3: Vídeo do YouTube -->
+        <!-- COLUNA 4: Vídeo do YouTube 3 -->
         <div class="media-col">
           <h3>Depoimento Primo Melaré</h3>
           <div class="video-frame">
@@ -378,6 +421,46 @@ footer strong{color:#ff6b6b}
     </div>
   </section>
 
+  <!-- SEÇÃO SP SKILLS -->
+  <section class="section-panel" id="SP Skills">
+    <h2>SP Skills</h2>
+    
+    <div class="section-block">
+      <p class="section-text">Insira aqui a descrição das atividades, treinamentos e preparação dos alunos para as competições profissionais do SP Skills, promovendo a excelência na educação profissional.</p>
+    </div>
+    
+    <div class="section-block">
+      <div class="media-row">
+        <!-- COLUNA 1: Vídeo do YouTube -->
+        <div class="media-col">
+          <h3>Vídeo SP Skills</h3>
+          <div class="video-frame">
+            <iframe 
+              src="https://www.youtube.com/embed/seu_codigo_aqui" 
+              title="Vídeo SP Skills" 
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+         
+        <!-- COLUNA 2: Carrossel de Fotos -->
+        <div class="media-col">
+          <h3>Galeria de Fotos - SP Skills</h3>
+          <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
+            <div class="carousel-track">
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #f2994a, #f2c94c);">Foto 1 - SP Skills</div>
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #eb5757, #000000);">Foto 2 - SP Skills</div>
+            </div>
+            <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- SEÇÃO SAGA SENAI -->
   <section class="section-panel" id="Saga SENAI">
     <h2>Saga SENAI de Inovação</h2>
@@ -389,7 +472,7 @@ footer strong{color:#ff6b6b}
     <div class="section-block">
       <div class="media-row">
         
-        <!-- COLUNA 1: Vídeo do YouTube -->
+        <!-- COLUNA 1: Vídeo do YouTube 1 -->
         <div class="media-col">
           <h3>Desafio de Ideias - Alunos</h3>
           <div class="video-frame">
@@ -402,8 +485,22 @@ footer strong{color:#ff6b6b}
             </iframe>
           </div>
         </div>
+
+        <!-- COLUNA 2: Vídeo do YouTube 2 (Novo) -->
+        <div class="media-col">
+          <h3>Vídeo Saga SENAI</h3>
+          <div class="video-frame">
+            <iframe 
+              src="https://www.youtube.com/embed/seu_codigo_aqui" 
+              title="Vídeo Saga SENAI de Inovação" 
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
          
-        <!-- COLUNA 2: Carrossel de Fotos -->
+        <!-- COLUNA 3: Carrossel de Fotos -->
         <div class="media-col">
           <h3>Galeria de Fotos - Saga SENAI</h3>
           <div class="carousel-wrapper">
@@ -416,7 +513,7 @@ footer strong{color:#ff6b6b}
           </div>
         </div>
 
-        <!-- COLUNA 3: Vídeo do YouTube -->
+        <!-- COLUNA 4: Vídeo do YouTube 3 -->
         <div class="media-col">
           <h3>Depoimento Prof. Yuri</h3>
           <div class="video-frame">
@@ -427,6 +524,169 @@ footer strong{color:#ff6b6b}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen>
             </iframe>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO SAEP -->
+  <section class="section-panel" id="SAEP">
+    <h2>SAEP</h2>
+    
+    <div class="section-block">
+      <p class="section-text">Insira aqui a descrição das atividades e avaliações relacionadas ao SAEP (Sistema de Avaliação da Educação Profissional), contemplando o acompanhamento do desempenho e a qualidade do ensino técnico.</p>
+    </div>
+    
+    <div class="section-block">
+      <div class="media-row">
+        <!-- COLUNA 1: Vídeo do YouTube -->
+        <div class="media-col">
+          <h3>Vídeo SAEP</h3>
+          <div class="video-frame">
+            <iframe 
+              src="https://www.youtube.com/embed/seu_codigo_aqui" 
+              title="Vídeo SAEP" 
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+         
+        <!-- COLUNA 2: Carrossel de Fotos -->
+        <div class="media-col">
+          <h3>Galeria de Fotos - SAEP</h3>
+          <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
+            <div class="carousel-track">
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #56CCF2, #2F80ED);">Foto 1 - SAEP</div>
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #BB6BD9, #4F46E5);">Foto 2 - SAEP</div>
+            </div>
+            <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO PROJETOS -->
+  <section class="section-panel" id="Projetos">
+    <h2>Projetos</h2>
+    
+    <div class="section-block">
+      <p class="section-text">Insira aqui a descrição dos projetos desenvolvidos na unidade, integrando tecnologia, automação e metodologias ativas no aprendizado dos alunos.</p>
+    </div>
+    
+    <div class="section-block">
+      <div class="media-row">
+        <!-- COLUNA 1: Vídeo do YouTube -->
+        <div class="media-col">
+          <h3>Vídeo de Projetos</h3>
+          <div class="video-frame">
+            <iframe 
+              src="https://www.youtube.com/embed/seu_codigo_aqui" 
+              title="Vídeo Projetos" 
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+         
+        <!-- COLUNA 2: Carrossel de Fotos -->
+        <div class="media-col">
+          <h3>Galeria de Fotos - Projetos</h3>
+          <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
+            <div class="carousel-track">
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #007991, #78ffd6);">Foto 1 - Projetos</div>
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #3E5151, #DECBA4);">Foto 2 - Projetos</div>
+            </div>
+            <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO EVENTOS -->
+  <section class="section-panel" id="Eventos">
+    <h2>Eventos</h2>
+    
+    <div class="section-block">
+      <p class="section-text">Insira aqui a descrição dos eventos, feiras tecnológicas, palestras e workshops realizados na instituição ou com participação externa.</p>
+    </div>
+    
+    <div class="section-block">
+      <div class="media-row">
+        <!-- COLUNA 1: Vídeo do YouTube -->
+        <div class="media-col">
+          <h3>Vídeo de Eventos</h3>
+          <div class="video-frame">
+            <iframe 
+              src="https://www.youtube.com/embed/seu_codigo_aqui" 
+              title="Vídeo Eventos" 
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+         
+        <!-- COLUNA 2: Carrossel de Fotos -->
+        <div class="media-col">
+          <h3>Galeria de Fotos - Eventos</h3>
+          <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
+            <div class="carousel-track">
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #FF416C, #FF4B2B);">Foto 1 - Eventos</div>
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #5433FF, #20BDFF);">Foto 2 - Eventos</div>
+            </div>
+            <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEÇÃO PROEDUCADOR -->
+  <section class="section-panel" id="Proeducador">
+    <h2>Proeducador</h2>
+    
+    <div class="section-block">
+      <p class="section-text">Insira aqui a descrição das atividades do Proeducador. Você pode detalhar os objetivos, metodologias e impactos alcançados nesta iniciativa desenvolvida no SENAI-SP.</p>
+    </div>
+    
+    <div class="section-block">
+      <div class="media-row">
+        
+        <!-- COLUNA 1: Vídeo do YouTube -->
+        <div class="media-col">
+          <h3>Vídeo do Projeto Proeducador</h3>
+          <div class="video-frame">
+            <iframe 
+              src="https://www.youtube.com/embed/seu_codigo_aqui" 
+              title="Vídeo Proeducador" 
+              loading="lazy"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowfullscreen>
+            </iframe>
+          </div>
+        </div>
+         
+        <!-- COLUNA 2: Carrossel de Fotos -->
+        <div class="media-col">
+          <h3>Galeria de Fotos - Proeducador</h3>
+          <div class="carousel-wrapper">
+            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
+            <div class="carousel-track">
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #8E2DE2, #4A00E0);">Foto 1 - Proeducador</div>
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #f857a6, #ff5858);">Foto 2 - Proeducador</div>
+              <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #11998e, #38ef7d);">Foto 3 - Proeducador</div>
+            </div>
+            <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
           </div>
         </div>
 
