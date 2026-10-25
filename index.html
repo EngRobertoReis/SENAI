@@ -1,258 +1,125 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Portfólio de atividades desenvolvidas no SENAI-SP por Roberto Campos dos Reis Junior.">
-  <title>Portfólio | SENAI-SP</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --senai-red: #ff0000;
-      --senai-red-dark: #c90000;
-      --charcoal: #333333;
-      --gray: #4d4d4d;
-      --header-gray: #eeeeee;
-      --page-gray: #f5f5f5;
-      --white: #ffffff;
-      --text: #252525;
-      --muted: #626262;
-      --border: #dedede;
-      --shadow: 0 10px 28px rgba(0, 0, 0, .09);
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; scroll-padding-top: 88px; }
-    body {
-      margin: 0;
-      color: var(--text);
-      background: var(--page-gray);
-      font-family: "Montserrat", Arial, sans-serif;
-      line-height: 1.6;
-    }
-    a { color: inherit; }
-    .topbar {
-      background: var(--header-gray);
-      border-bottom: 4px solid var(--senai-red);
-    }
-    .topbar-inner {
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 20px 28px;
-      display: flex;
-      align-items: center;
-      gap: 28px;
-    }
-    .brand {
-      flex: 0 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 9px 14px;
-      background: var(--senai-red);
-      border-radius: 2px;
-      text-decoration: none;
-    }
-    .brand img {
-      display: block;
-      width: min(240px, 32vw);
-      height: auto;
-    }
-    .identity { min-width: 0; }
-    .identity h1 {
-      margin: 0 0 8px;
-      color: var(--charcoal);
-      font-size: clamp(1.2rem, 2.25vw, 1.9rem);
-      font-weight: 800;
-      line-height: 1.25;
-      letter-spacing: -.035em;
-    }
-    .identity .name {
-      margin: 0;
-      font-size: clamp(.9rem, 1.25vw, 1.05rem);
-      font-weight: 700;
-      color: var(--senai-red-dark);
-    }
-    .identity .details {
-      margin: 3px 0 0;
-      color: var(--gray);
-      font-size: .84rem;
-      font-weight: 500;
-      line-height: 1.55;
-    }
-    nav {
-      background: var(--white);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 20;
-    }
-    .nav-inner {
-      max-width: 1180px;
-      margin: auto;
-      padding: 0 28px;
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
-    nav a {
-      display: inline-block;
-      padding: 13px 14px;
-      color: var(--charcoal);
-      text-decoration: none;
-      font-size: .82rem;
-      font-weight: 700;
-      border-bottom: 3px solid transparent;
-    }
-    nav a:hover, nav a:focus-visible {
-      color: var(--senai-red-dark);
-      border-bottom-color: var(--senai-red);
-    }
-    main { max-width: 1180px; margin: 0 auto; padding: 34px 28px 64px; }
-    .intro {
-      padding: 26px 28px;
-      margin-bottom: 28px;
-      background: var(--white);
-      border-left: 6px solid var(--senai-red);
-      border-radius: 8px;
-      box-shadow: var(--shadow);
-    }
-    .intro h2 { margin: 0 0 7px; font-size: 1.25rem; }
-    .intro p { margin: 0; color: var(--muted); }
-    .section-panel {
-      margin-top: 24px;
-      padding: 28px;
-      background: var(--white);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      box-shadow: var(--shadow);
-      scroll-margin-top: 84px;
-    }
-    .section-panel h3 {
-      margin: 0 0 8px;
-      font-size: 1.35rem;
-      line-height: 1.2;
-    }
-    .section-panel h3 img {
-      display: block;
-      width: min(420px, 100%);
-      height: auto;
-      border-radius: 0;
-      background: var(--senai-red);
-      padding: 0;
-    }
-    .section-panel p { margin: 0; color: var(--muted); }
-    footer {
-      padding: 26px 20px;
-      background: var(--charcoal);
-      color: var(--white);
-      text-align: center;
-      font-size: .82rem;
-    }
-    footer strong { color: #ff7373; }
-
-    @media (max-width: 900px) {
-      .topbar-inner { align-items: flex-start; }
-      .brand img { width: 170px; }
-    }
-    @media (max-width: 620px) {
-      .topbar-inner { padding: 18px 18px 20px; flex-direction: column; gap: 15px; }
-      .brand img { width: 190px; }
-      .identity h1 { font-size: 1.35rem; }
-      .identity .details { font-size: .8rem; }
-      .nav-inner { padding: 0 12px; gap: 0; }
-      nav a { padding: 12px 9px; font-size: .76rem; }
-      main { padding: 24px 16px 44px; }
-      .intro, .section-panel { padding: 21px 18px; }
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Portfólio de atividades desenvolvidas no SENAI-SP por Roberto Campos dos Reis Junior.">
+<title>Portfólio | SENAI-SP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--senai-red:#ff0000;--senai-red-dark:#c90000;--charcoal:#333333;--gray:#4d4d4d;--header-gray:#eeeeee;--page-gray:#f5f5f5;--white:#ffffff;--text:#252525;--muted:#626262;--border:#dedede;--shadow:0 10px 28px rgba(0,0,0,.09)}
+*{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:88px}
+body{margin:0;color:var(--text);background:var(--page-gray);font-family:"Montserrat",Arial,sans-serif;line-height:1.6}a{color:inherit}
+.topbar{background:var(--header-gray);border-bottom:4px solid var(--senai-red)}
+.topbar-inner{max-width:1180px;margin:0 auto;padding:20px 28px;display:flex;align-items:center;gap:28px}
+.brand{flex:0 0 auto;display:flex;align-items:center;justify-content:center;padding:9px 14px;background:var(--senai-red);border-radius:2px;text-decoration:none}
+.brand img{display:block;width:min(240px,32vw);height:auto}.identity{min-width:0}
+.identity h1{margin:0 0 8px;color:var(--charcoal);font-size:clamp(1.2rem,2.25vw,1.9rem);font-weight:800;line-height:1.25;letter-spacing:-.035em}
+.identity .name{margin:0;font-size:clamp(.9rem,1.25vw,1.05rem);font-weight:700;color:var(--senai-red-dark)}
+.identity .details{margin:3px 0 0;color:var(--gray);font-size:.84rem;font-weight:500;line-height:1.55}
+nav{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:20}
+.nav-inner{max-width:1180px;margin:auto;padding:0 28px;display:flex;gap:8px;flex-wrap:wrap}
+nav a{display:inline-block;padding:13px 14px;color:var(--charcoal);text-decoration:none;font-size:.82rem;font-weight:700;border-bottom:3px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--senai-red-dark);border-bottom-color:var(--senai-red)}
+main{max-width:1180px;margin:0 auto;padding:34px 28px 64px}
+.intro,.section-panel{background:var(--white);border-radius:10px;box-shadow:var(--shadow)}
+.intro{padding:26px 28px;margin-bottom:28px;border-left:6px solid var(--senai-red)}
+.intro h2{margin:0 0 7px;font-size:1.25rem}.intro p{margin:0;color:var(--muted);white-space:pre-line}
+.section-panel{margin-top:24px;padding:28px;border:1px solid var(--border);scroll-margin-top:84px}
+.section-panel h2{margin:0 0 12px;color:var(--charcoal);font-size:1.35rem;line-height:1.3}
+.section-text{margin:0;color:var(--muted);white-space:pre-line}
+.section-block{margin-top:24px}.section-block h3{margin:0 0 10px;color:var(--charcoal);font-size:1rem}
+.file-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:12px}
+.file-item{min-width:0;padding:14px;border:1px solid var(--border);border-radius:8px;background:var(--page-gray)}
+.file-item a{color:var(--senai-red-dark);font-weight:700;overflow-wrap:anywhere}.file-item p{margin:6px 0 0;color:var(--muted);font-size:.85rem}
+.image-preview{display:block;width:100%;max-height:420px;margin-top:10px;object-fit:contain;background:var(--white);border-radius:6px}
+.video-frame{position:relative;width:100%;aspect-ratio:16/9;background:var(--page-gray);border-radius:8px;overflow:hidden}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-align:center;font-size:.82rem}footer strong{color:#ff7373}
+@media(max-width:900px){.topbar-inner{align-items:flex-start}.brand img{width:170px}}
+@media(max-width:620px){.topbar-inner{padding:18px 18px 20px;flex-direction:column;gap:15px}.brand img{width:190px}.identity h1{font-size:1.35rem}.identity .details{font-size:.8rem}.nav-inner{padding:0 12px;gap:0}nav a{padding:12px 9px;font-size:.76rem}main{padding:24px 16px 44px}.intro,.section-panel{padding:21px 18px}}
+</style>
 </head>
 <body>
-  <header class="topbar" id="inicio">
-    <div class="topbar-inner">
-      <a class="brand" href="#inicio" aria-label="SENAI-SP - início">
-        <img src="logo-senai.png" alt="Logo SENAI-SP" onerror="this.style.display='none';">
-      </a>
-      <div class="identity">
-        <h1>Portifólio de atividades desenvolvidas no SENAI - SP</h1>
-        <p class="name">Roberto Campos dos Reis Junior</p>
-        <p class="details">Instrutor de Formação III - Eletroeletrônica, Automação e TI<br>
-          CFP 6.01 - Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe, São Carlos - SP
-        </p>
+<header class="topbar" id="inicio">
+  <div class="topbar-inner">
+    <a class="brand" href="#inicio" aria-label="SENAI-SP - início">
+      <img src="logo-senai.png" alt="Logo SENAI-SP" onerror="this.style.display='none';">
+    </a>
+    <div class="identity">
+      <h1>Portifólio de atividades desenvolvidas no SENAI - SP</h1>
+      <p class="name">Roberto Campos dos Reis Junior</p>
+      <p class="details">Instrutor de Formação III - Eletroeletrônica, Automação e TI<br>
+      CFP 6.01 - Faculdade de Tecnologia e Escola SENAI Antonio Adolpho Lobbe, São Carlos - SP</p>
+    </div>
+  </div>
+</header>
+
+<nav aria-label="Navegação principal">
+  <div class="nav-inner">
+    <a href="#sobre">Sobre</a>
+    <!-- Para cada nova seção, adicione um link, por exemplo:
+    <a href="#projeto-automacao">Projeto de Automação</a>
+    -->
+  </div>
+</nav>
+
+<main>
+  <!-- SEÇÃO FIXA: SOBRE. Edite o texto entre as tags <p>. -->
+  <section class="intro" id="sobre">
+    <h2>Sobre</h2>
+    <p>Apresentação das principais atividades, projetos e iniciativas desenvolvidas no SENAI-SP, com foco em educação, tecnologia, inovação e formação profissional.</p>
+  </section>
+
+  <!--
+  MODELO PARA CRIAR NOVAS SEÇÕES:
+  1. Copie o bloco <section class="section-panel" ...> abaixo.
+  2. Defina um id exclusivo, sem espaços, por exemplo id="projeto-automacao".
+  3. Crie um link para esse id no menu de navegação.
+  4. Edite o título, texto, arquivos e URL do YouTube.
+  5. Coloque imagens/PDFs no repositório GitHub e use caminhos relativos.
+  -->
+
+  <!-- EXEMPLO DE SEÇÃO: remova os comentários para usar e duplique para criar outras.
+  <section class="section-panel" id="projeto-automacao">
+    <h2>Projeto de Automação</h2>
+
+    <div class="section-block">
+      <h3>Texto / descrição</h3>
+      <p class="section-text">Escreva aqui a descrição do projeto, seus objetivos, as tecnologias utilizadas e os resultados. Você pode escrever um texto longo em várias linhas.</p>
+    </div>
+
+    <div class="section-block">
+      <h3>Arquivos estáticos (imagens, PDFs e outros)</h3>
+      <div class="file-list">
+        <article class="file-item">
+          <a href="arquivos/projeto/relatorio.pdf" target="_blank" rel="noopener">Abrir relatório em PDF</a>
+          <p>Relatório técnico do projeto.</p>
+        </article>
+        <article class="file-item">
+          <a href="imagens/projeto/foto1.jpg" target="_blank" rel="noopener">Abrir imagem em tamanho original</a>
+          <img class="image-preview" src="imagens/projeto/foto1.jpg" alt="Descrição da imagem">
+          <p>Fotografia da montagem experimental.</p>
+        </article>
       </div>
     </div>
-  </header>
 
-  <nav aria-label="Navegação principal">
-    <div class="nav-inner">
-      <a href="#hannover-messe">Hannover Messe</a>
-      <a href="#remote">ReMoTe</a>
-      <a href="#saep">SAEP</a>
-      <a href="#saga-senai">Saga SENAI</a>
-      <a href="#sp-skills">SP Skills</a>
-      <a href="#projetos-e-educacao">Projetos e Educação</a>
-      <a href="#mundo-senai">Mundo SENAI</a>
-      <a href="#pro-educador">Pró Educador</a>
-      <a href="#outros">Outros</a>
+    <div class="section-block">
+      <h3>Vídeo do YouTube</h3>
+      <div class="video-frame">
+        <iframe src="https://www.youtube-nocookie.com/embed/ID_DO_VIDEO"
+          title="Vídeo do projeto" loading="lazy"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
     </div>
-  </nav>
+  </section>
+  -->
+</main>
 
-  <main>
-    <section class="intro" id="sobre">
-      <h2>Sobre</h2>
-      <p>Apresentação das principais atividades, projetos e iniciativas desenvolvidas no SENAI-SP, com foco em educação, tecnologia, inovação e formação profissional.</p>
-    </section>
-
-    <section class="section-panel" id="hannover-messe">
-      <h3><img src="logo-senai.png" alt="Hannover Messe"></h3>
-      <p>Atividades e experiências relacionadas a eventos, inovação industrial e integração com o setor produtivo.</p>
-    </section>
-
-    <section class="section-panel" id="remote">
-      <h3>ReMoTe</h3>
-      <p>Projetos e ações voltados à mobilidade, tecnologia aplicada e desenvolvimento de soluções inovadoras.</p>
-    </section>
-
-    <section class="section-panel" id="saep">
-      <h3>SAEP</h3>
-      <p>Desenvolvimento de atividades, práticas e ações vinculadas ao SAEP e ao fortalecimento da formação técnica.</p>
-    </section>
-
-    <section class="section-panel" id="saga-senai">
-      <h3>Saga SENAI</h3>
-      <p>Iniciativas e projetos que conectam educação, tecnologia e transformação social dentro do contexto do SENAI.</p>
-    </section>
-
-    <section class="section-panel" id="sp-skills">
-      <h3>SP Skills</h3>
-      <p>Trabalhos relacionados a competências, habilidades e desenvolvimento profissional alinhados às demandas do mercado.</p>
-    </section>
-
-    <section class="section-panel" id="projetos-e-educacao">
-      <h3>Projetos e Educação</h3>
-      <p>Experiências de aprendizagem, projetos institucionais e atividades educacionais com foco em formação e inovação.</p>
-    </section>
-
-    <section class="section-panel" id="mundo-senai">
-      <h3>Mundo SENAI</h3>
-      <p>Atividades e ações que mostram a atuação do SENAI como referência em educação técnica, inovação e desenvolvimento regional.</p>
-    </section>
-
-    <section class="section-panel" id="pro-educador">
-      <h3>Pró Educador</h3>
-      <p>Iniciativas voltadas ao desenvolvimento profissional docente e à melhoria contínua da prática educativa.</p>
-    </section>
-
-    <section class="section-panel" id="outros">
-      <h3>Outros</h3>
-      <p>Projetos complementares, ações especiais e atividades de relevância para a formação e atuação profissional.</p>
-    </section>
-  </main>
-
-  <footer>
-    <strong>Portfólio SENAI-SP</strong> · Roberto Campos dos Reis Junior · São Carlos - SP
-  </footer>
+<footer><strong>Portfólio SENAI-SP</strong> · Roberto Campos dos Reis Junior · São Carlos - SP</footer>
 </body>
 </html>
