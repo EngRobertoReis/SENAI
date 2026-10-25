@@ -147,35 +147,54 @@ footer{padding:26px 20px;background:var(--charcoal);color:var(--white);text-alig
       <p class="section-text">Especialista convidado para Missão de Prospecção Tecnológica na "Hannover Messe - 2026", maior feira de automação industrial internacional sediada em Hannover - Alemanha.</p>
     </div>
     
+    <!-- Bloco Lado a Lado: PDF e Carrossel -->
     <div class="section-block">
-      <h3>Relatório da Missão Tecnológica</h3>
-      <div class="file-list">
-        <article class="file-item">
-          <a href="documentos/relatorio-hannover-2026.pdf" target="_blank" rel="noopener">Abrir relatório em PDF</a>
-          <img class="image-preview" src="images/general/hannover-messe.png" alt="Relatório Hannover Messe 2026">
-          <p>Boletim Tecnológico Hannover Messe 2026</p>
-        </article>
-      </div>
-    </div>
-
-    <!-- Bloco de Galeria com o Carrossel -->
-    <div class="section-block">
-      <h3>Galeria de Fotos - Hannover</h3>
-      <div class="carousel-wrapper">
-        <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
+      <div class="media-row">
         
-        <div class="carousel-track">
-          <img class="carousel-img" src="images/hannover/hannover_1.jpg" alt="Foto 1 em Hannover">
-          <img class="carousel-img" src="images/hannover/hannover_2.jpg" alt="Foto 2 em Hannover">
-          <img class="carousel-img" src="images/hannover/hannover_3.jpg" alt="Foto 3 em Hannover">
-          <img class="carousel-img" src="images/hannover/hannover_4.jpg" alt="Foto 4 em Hannover">
+        <!-- COLUNA 1: Relatório em PDF -->
+        <div class="media-col">
+          <h3>Relatório da Missão Tecnológica</h3>
+          <div class="file-list" style="grid-template-columns: 1fr;"> <!-- Força o item a ocupar toda a coluna -->
+            <article class="file-item">
+              <a href="documentos/relatorio-hannover-2026.pdf" target="_blank" rel="noopener">Abrir relatório em PDF</a>
+              <img class="image-preview" src="images/general/hannover-messe.png" alt="Relatório Hannover Messe 2026">
+              <p>Boletim Tecnológico Hannover Messe 2026</p>
+            </article>
+          </div>
         </div>
-        
-        <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
+
+        <!-- COLUNA 2: Carrossel de Fotos -->
+        <div class="media-col">
+          <h3>Galeria de Fotos - Hannover</h3>
+          <div class="carousel-wrapper" style="margin-top: 0;">
+            <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
+            
+            <div class="carousel-track">
+              <!-- Suas imagens aqui -->
+              <img class="carousel-img" src="images/hannover/hannover_1.jpg" alt="Foto 1 em Hannover">
+              <img class="carousel-img" src="images/hannover/hannover_2.jpg" alt="Foto 2 em Hannover">
+              <img class="carousel-img" src="images/hannover/hannover_3.jpg" alt="Foto 3 em Hannover">
+              <img class="carousel-img" src="images/hannover/hannover_4.jpg" alt="Foto 4 em Hannover">
+            </div>
+            
+            <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
+          </div>
+        </div>
+
+      </div> <!-- fim da media-row -->
+    </div>
+
+    <!-- Opcional: Se quiser adicionar o vídeo, crie uma nova section-block abaixo -->
+    <!-- 
+    <div class="section-block">
+      <h3>Vídeo do Projeto</h3>
+      <div class="video-frame">
+        <iframe src="https://www.youtube.com/embed/ID_DO_VIDEO" ...></iframe>
       </div>
     </div>
-  </section>
+    -->
 
+  </section>
   <!--
   MODELO PARA CRIAR NOVAS SEÇÕES:
   Para criar uma nova seção com carrossel, basta copiar e colar a estrutura <section class="section-panel"> inteira, trocar o ID e os caminhos das imagens. O Javascript cuidará dos botões automaticamente.
