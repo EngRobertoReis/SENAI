@@ -8,6 +8,11 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <noscript>
+      <style>
+        .carousel-img:first-child { opacity: 1; visibility: visible; }
+      </style>
+    </noscript>
     <style>
       :root {
         --senai-red: #ff0000;
@@ -317,11 +322,11 @@
         border: 1px solid var(--border);
       }
 
-      /* Vídeos Enquadrados */
+      /* Vídeos do YouTube (carregam sob demanda, com link de apoio) */
       .video-frame {
         position: relative;
         width: 100%;
-        aspect-ratio: 16/9;
+        aspect-ratio: 16 / 9;
         background: var(--charcoal);
         border-radius: 10px;
         overflow: hidden;
@@ -334,6 +339,71 @@
         width: 100%;
         height: 100%;
         border: 0;
+      }
+      .video-play {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        padding: 0;
+        border: 0;
+        display: block;
+        cursor: pointer;
+        background: linear-gradient(135deg, #2b2b2b, #4d4d4d);
+      }
+      .video-thumb {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.4s ease, filter 0.3s ease;
+      }
+      .video-play:hover .video-thumb,
+      .video-play:focus-visible .video-thumb {
+        transform: scale(1.04);
+        filter: brightness(0.82);
+      }
+      .play-icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 68px;
+        height: 48px;
+        transform: translate(-50%, -50%);
+        background: var(--senai-red);
+        border-radius: 12px;
+        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+        transition: var(--transition);
+      }
+      .play-icon::before {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 54%;
+        transform: translate(-50%, -50%);
+        border-style: solid;
+        border-width: 10px 0 10px 17px;
+        border-color: transparent transparent transparent #fff;
+      }
+      .video-play:hover .play-icon,
+      .video-play:focus-visible .play-icon {
+        background: var(--senai-red-dark);
+        transform: translate(-50%, -50%) scale(1.08);
+      }
+      .video-play:focus-visible {
+        outline: 3px solid var(--senai-red);
+        outline-offset: -3px;
+      }
+      .video-ext {
+        display: inline-block;
+        margin-top: 8px;
+        font-size: 0.78rem;
+        font-weight: 700;
+        color: var(--senai-red-dark);
+      }
+      .video-ext:hover {
+        text-decoration: underline;
       }
 
       /* Grid & Alinhamento Lado a Lado */
@@ -353,7 +423,6 @@
         display: flex;
         flex-direction: column;
         min-width: 0;
-        height: 100%;
         justify-content: flex-start;
       }
       .media-col > h3 {
@@ -363,57 +432,86 @@
         align-items: flex-end;
       }
 
-      /* Carrossel de Fotos Otimizado */
+      /* Carrossel de Fotos (altura definida por aspect-ratio, sem depender de height:100%) */
       .carousel-wrapper {
         position: relative;
         width: 100%;
-        height: 100%;
-        min-height: 200px;
-        display: flex;
-        align-items: center;
+        aspect-ratio: 16 / 9;
         border-radius: 10px;
         overflow: hidden;
         background: var(--charcoal);
         border: 1px solid var(--border);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        touch-action: pan-y;
+      }
+      .carousel-wrapper:focus-visible {
+        outline: 3px solid var(--senai-red);
+        outline-offset: 2px;
       }
       .carousel-track {
-        display: flex;
-        width: 100%;
-        height: 100%;
-        min-height: 220px;
-        overflow-x: auto;
-        scroll-snap-type: x mandatory;
-        scroll-behavior: smooth;
-        scrollbar-width: none;
+        position: absolute;
+        inset: 0;
       }
-      .carousel-track::-webkit-scrollbar {
-        display: none;
-      }
-
       .carousel-img {
-        flex: 0 0 100%;
+        position: absolute;
+        inset: 0;
+        display: block;
         width: 100%;
         height: 100%;
-        aspect-ratio: 16/9;
         object-fit: cover;
-        scroll-snap-align: start;
         background: var(--charcoal);
-        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transition: opacity 0.45s ease, visibility 0.45s;
       }
-
-      /* Classe ajustada para impedir o corte do QR Code */
-      .fit-contain {
-        object-fit: contain !important;
-        background: #ffffff !important;
-        padding: 10px;
+      .carousel-img.is-active {
+        opacity: 1;
+        visibility: visible;
+        z-index: 1;
+      }
+      .carousel-fallback {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 16px;
+        color: #fff;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-align: center;
+      }
+      .carousel-dots {
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: 10px;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        gap: 7px;
+        pointer-events: none;
+      }
+      .carousel-dot {
+        width: 9px;
+        height: 9px;
+        padding: 0;
+        border: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.55);
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+        cursor: pointer;
+        pointer-events: auto;
+        transition: var(--transition);
+      }
+      .carousel-dot.is-active {
+        background: #fff;
+        transform: scale(1.3);
       }
 
       .carousel-btn {
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
-        z-index: 10;
+        z-index: 5;
         background-color: rgba(0, 0, 0, 0.5);
         color: var(--white);
         border: none;
@@ -439,11 +537,34 @@
         right: 12px;
       }
 
+      /* Miniaturas clicáveis (PDF e QR Code) */
+      .media-link {
+        display: block;
+        width: 100%;
+      }
+      .media-img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+      .fit-contain {
+        object-fit: contain;
+        background: #ffffff;
+        padding: 10px;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .carousel-img,
+        .video-thumb {
+          transition: none;
+        }
+      }
+
       /* Placeholder visuais para imagens/vídeos */
       .placeholder-media {
         width: 100%;
-        height: 100%;
-        aspect-ratio: 16/9;
+        aspect-ratio: 16 / 9;
         background: linear-gradient(135deg, #2c3e50, #3498db);
         display: flex;
         align-items: center;
@@ -577,9 +698,9 @@
             <!-- COLUNA 1: Relatório em PDF com imagem clicável -->
             <div class="media-col">
               <h3>Relatório da Missão Tecnológica</h3>
-              <a href="documentos/relatorio-hannover-2026.pdf" target="_blank" rel="noopener" style="display:block; width:100%; height:100%;">
+              <a href="documentos/relatorio-hannover-2026.pdf" target="_blank" rel="noopener" class="media-link">
                 <div class="placeholder-media" style="background: linear-gradient(135deg, #c90000, #ff4d4d); border:1px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-                  <img src="images/general/boletim.png" class="carousel-img" alt="Relatório PDF">
+                  <img src="images/general/boletim.png" class="media-img" alt="Relatório PDF">
                 </div>
               </a>
             </div>
@@ -587,9 +708,9 @@
             <!-- COLUNA 2: QR Code / Link com imagem clicável -->
             <div class="media-col">
               <h3>Exemplo de Aplicação em Aulas</h3>
-              <a href="https://senaisaocarlos.github.io/tormax30/" target="_blank" rel="noopener" style="display:block; width:100%; height:100%;">
+              <a href="https://senaisaocarlos.github.io/tormax30/" target="_blank" rel="noopener" class="media-link">
                 <div class="placeholder-media" style="background: #ffffff; border:1px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-                  <img src="images/general/qrcode_torno.png" class="carousel-img fit-contain" alt="QR Code">
+                  <img src="images/general/qrcode_torno.png" class="media-img fit-contain" alt="QR Code">
                 </div>
               </a>
             </div>
@@ -600,12 +721,12 @@
               <div class="carousel-wrapper">
                 <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
                 <div class="carousel-track">
-                  <img src="images/hannover/hannover_1.jpg" class="carousel-img" alt="Foto 1 - Hannover">
-                  <img src="images/hannover/hannover_2.jpg" class="carousel-img" alt="Foto 2 - Hannover">
-                  <img src="images/hannover/hannover_3.jpg" class="carousel-img" alt="Foto 3 - Hannover">
-                  <img src="images/hannover/hannover_4.JPG" class="carousel-img" alt="Foto 4 - Hannover">
-                  <img src="images/hannover/hannover_5.JPG" class="carousel-img" alt="Foto 5 - Hannover">
-                  <img src="images/hannover/hannover_6.JPG" class="carousel-img" alt="Foto 6 - Hannover">
+                  <img src="images/hannover/hannover_1.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Foto 1 - Hannover">
+                  <img src="images/hannover/hannover_2.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Foto 2 - Hannover">
+                  <img src="images/hannover/hannover_3.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Foto 3 - Hannover">
+                  <img src="images/hannover/hannover_4.JPG" class="carousel-img" loading="lazy" decoding="async" alt="Foto 4 - Hannover">
+                  <img src="images/hannover/hannover_5.JPG" class="carousel-img" loading="lazy" decoding="async" alt="Foto 5 - Hannover">
+                  <img src="images/hannover/hannover_6.JPG" class="carousel-img" loading="lazy" decoding="async" alt="Foto 6 - Hannover">
                 </div>
                 <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
               </div>
@@ -614,15 +735,13 @@
             <!-- COLUNA 4: Vídeo do YouTube -->
             <div class="media-col">
               <h3>Depoimento Luciano Trevisan</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/sXXoz9IW0d8"
-                  title="Depoimento Professor Luciano Trevisan"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="sXXoz9IW0d8" data-title="Depoimento Professor Luciano Trevisan">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento Professor Luciano Trevisan">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/sXXoz9IW0d8/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=sXXoz9IW0d8" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
           </div>
         </div>
@@ -643,29 +762,25 @@
             <!-- COLUNA 1: Vídeo do YouTube 1 -->
             <div class="media-col">
               <h3>Projeto Integrado CFP 6.01</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/XYa-U0BqFR4"
-                  title="Projeto Integrado ReMoTe - CFP 6.01"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="XYa-U0BqFR4" data-title="Projeto Integrado ReMoTe - CFP 6.01">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Projeto Integrado ReMoTe - CFP 6.01">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/XYa-U0BqFR4/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=XYa-U0BqFR4" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
             <!-- COLUNA 2: Vídeo do YouTube 2 -->
             <div class="media-col">
               <h3>Exemplo de Aplicação com Alunos</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/U5kUpSsu4LY?list=PLfQhFcxhTIgJ_RaHMqpFfkpAW2nVpfKjD"
-                  title="Vídeo ReMoTe"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="U5kUpSsu4LY" data-list="PLfQhFcxhTIgJ_RaHMqpFfkpAW2nVpfKjD" data-title="Vídeo ReMoTe">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Vídeo ReMoTe">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/U5kUpSsu4LY/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=U5kUpSsu4LY&amp;list=PLfQhFcxhTIgJ_RaHMqpFfkpAW2nVpfKjD" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
             <!-- COLUNA 3: Carrossel de Fotos -->
@@ -674,13 +789,13 @@
               <div class="carousel-wrapper">
                 <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
                 <div class="carousel-track">
-                  <img src="images/remote/remote_1.jpg" class="carousel-img" alt="Galeria de Fotos - ReMoTe - foto 1">
-                  <img src="images/remote/remote_2.jpg" class="carousel-img" alt="Galeria de Fotos - ReMoTe - foto 2">
-                  <img src="images/remote/remote_3.jpg" class="carousel-img" alt="Galeria de Fotos - ReMoTe - foto 3">
-                  <img src="images/remote/remote_4.jpg" class="carousel-img" alt="Galeria de Fotos - ReMoTe - foto 4">
-                  <img src="images/remote/remote_5.jpg" class="carousel-img" alt="Galeria de Fotos - ReMoTe - foto 5">
-                  <img src="images/aulas/aula_2.jpeg" class="carousel-img" alt="Galeria de Fotos - ReMoTe - foto 6">
-                  <img src="images/aulas/visita_2.png" class="carousel-img" alt="Galeria de Fotos - ReMoTe - foto 7">
+                  <img src="images/remote/remote_1.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - ReMoTe - foto 1">
+                  <img src="images/remote/remote_2.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - ReMoTe - foto 2">
+                  <img src="images/remote/remote_3.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - ReMoTe - foto 3">
+                  <img src="images/remote/remote_4.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - ReMoTe - foto 4">
+                  <img src="images/remote/remote_5.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - ReMoTe - foto 5">
+                  <img src="images/aulas/aula_2.jpeg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - ReMoTe - foto 6">
+                  <img src="images/aulas/visita_2.png" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - ReMoTe - foto 7">
                 </div>
                 <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
               </div>
@@ -689,15 +804,13 @@
             <!-- COLUNA 4: Vídeo do YouTube 3 -->
             <div class="media-col">
               <h3>Depoimento Primo Melaré</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/WMQHe7Gb0k4"
-                  title="Depoimento Especialista Primo Melaré"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="WMQHe7Gb0k4" data-title="Depoimento Especialista Primo Melaré">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento Especialista Primo Melaré">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/WMQHe7Gb0k4/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=WMQHe7Gb0k4" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
           </div>
         </div>
@@ -716,15 +829,13 @@
             <!-- COLUNA 1: Vídeo do YouTube -->
             <div class="media-col">
               <h3>Depoimento Professor Bruno</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/bjUW_zdbuY4"
-                  title="Depoimento Professor Bruno"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="bjUW_zdbuY4" data-title="Depoimento Professor Bruno">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento Professor Bruno">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/bjUW_zdbuY4/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=bjUW_zdbuY4" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
             <!-- COLUNA 2: Carrossel de Fotos -->
@@ -733,10 +844,10 @@
               <div class="carousel-wrapper">
                 <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
                 <div class="carousel-track">
-                  <img src="images/spskills/olimpiada_1.jpeg" class="carousel-img" alt="Galeria de Fotos - SP Skills - foto 1">
-                  <img src="images/spskills/olimpiada_2.jpeg" class="carousel-img" alt="Galeria de Fotos - SP Skills - foto 2">
-                  <img src="images/spskills/olimpiada_3.jpeg" class="carousel-img" alt="Galeria de Fotos - SP Skills - foto 3">
-                  <img src="images/spskills/olimpiada_4.jpeg" class="carousel-img" alt="Galeria de Fotos - SP Skills - foto 4">
+                  <img src="images/spskills/olimpiada_1.jpeg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - SP Skills - foto 1">
+                  <img src="images/spskills/olimpiada_2.jpeg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - SP Skills - foto 2">
+                  <img src="images/spskills/olimpiada_3.jpeg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - SP Skills - foto 3">
+                  <img src="images/spskills/olimpiada_4.jpeg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - SP Skills - foto 4">
                 </div>
                 <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
               </div>
@@ -759,29 +870,25 @@
             <!-- COLUNA 1: Vídeo do YouTube 1 -->
             <div class="media-col">
               <h3>Depoimento dos Alunos - Desafio de Ideias</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/8Duq8Bf-h-w"
-                  title="Depoimento dos Alunos sobre o Desafio de Ideias"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="8Duq8Bf-h-w" data-title="Depoimento dos Alunos sobre o Desafio de Ideias">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento dos Alunos sobre o Desafio de Ideias">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/8Duq8Bf-h-w/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=8Duq8Bf-h-w" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
             <!-- COLUNA 2: Vídeo do YouTube 2 -->
             <div class="media-col">
               <h3>Depoimento Professor Yuri</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/GxqMAoTlE9U"
-                  title="Depoimento Professor Yuri"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="GxqMAoTlE9U" data-title="Depoimento Professor Yuri">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento Professor Yuri">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/GxqMAoTlE9U/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=GxqMAoTlE9U" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
             <!-- COLUNA 3: Carrossel de Fotos -->
@@ -790,10 +897,10 @@
               <div class="carousel-wrapper">
                 <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
                 <div class="carousel-track">
-                  <img src="images/desafio-ideias/desafio-ideias_1.jpg" class="carousel-img" alt="Galeria de Fotos - Saga SENAI - foto 1">
-                  <img src="images/desafio-ideias/desafio-ideias_2.jpg" class="carousel-img" alt="Galeria de Fotos - Saga SENAI - foto 2">
-                  <img src="images/desafio-ideias/desafio-ideias_3.jpg" class="carousel-img" alt="Galeria de Fotos - Saga SENAI - foto 3">
-                  <img src="images/desafio-ideias/desafio-ideias_4.jpg" class="carousel-img" alt="Galeria de Fotos - Saga SENAI - foto 4">
+                  <img src="images/desafio-ideias/desafio-ideias_1.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - Saga SENAI - foto 1">
+                  <img src="images/desafio-ideias/desafio-ideias_2.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - Saga SENAI - foto 2">
+                  <img src="images/desafio-ideias/desafio-ideias_3.png" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - Saga SENAI - foto 3">
+                  <img src="images/desafio-ideias/desafio-ideias_4.png" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - Saga SENAI - foto 4">
                 </div>
                 <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
               </div>
@@ -802,15 +909,13 @@
             <!-- COLUNA 4: Vídeo do YouTube 3 -->
             <div class="media-col">
               <h3>Depoimento Professor Wesley</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/lYasC7OpddM"
-                  title="Depoimento Professor Wesley"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="lYasC7OpddM" data-title="Depoimento Professor Wesley">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento Professor Wesley">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/lYasC7OpddM/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=lYasC7OpddM" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
           </div>
@@ -830,15 +935,13 @@
             <!-- COLUNA 1: Vídeo do YouTube -->
             <div class="media-col">
               <h3>Depoimento Rafael Selvagio</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/QvezLF_M_zs"
-                  title="Depoimento Rafael Selvagio"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="QvezLF_M_zs" data-title="Depoimento Rafael Selvagio">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento Rafael Selvagio">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/QvezLF_M_zs/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=QvezLF_M_zs" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
             <!-- COLUNA 2: Carrossel de Fotos -->
@@ -847,11 +950,11 @@
               <div class="carousel-wrapper">
                 <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
                 <div class="carousel-track">
-                  <img src="images/saep/saep_1.jpg" class="carousel-img" alt="Galeria de Fotos - SAEP - foto 1">
-                  <img src="images/saep/saep_2.jpg" class="carousel-img" alt="Galeria de Fotos - SAEP - foto 2">
-                  <img src="images/saep/saep_3.jpg" class="carousel-img" alt="Galeria de Fotos - SAEP - foto 3">
-                  <img src="images/saep/saep_4.jpg" class="carousel-img" alt="Galeria de Fotos - SAEP - foto 4">
-                  <img src="images/saep/saep_5.jpg" class="carousel-img" alt="Galeria de Fotos - SAEP - foto 5">
+                  <img src="images/saep/saep_1.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - SAEP - foto 1">
+                  <img src="images/saep/saep_2.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - SAEP - foto 2">
+                  <img src="images/saep/saep_3.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - SAEP - foto 3">
+                  <img src="images/saep/saep_4.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - SAEP - foto 4">
+                  <img src="images/saep/saep_5.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - SAEP - foto 5">
                 </div>
                 <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
               </div>
@@ -873,15 +976,13 @@
             <!-- COLUNA 1: Vídeo do YouTube -->
             <div class="media-col">
               <h3>Depoimento Professor Anderson</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/mma8toxFP9o"
-                  title="Depoimento Professor Anderson"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="mma8toxFP9o" data-title="Depoimento Professor Anderson">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento Professor Anderson">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/mma8toxFP9o/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=mma8toxFP9o" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
             <!-- COLUNA 2: Carrossel de Fotos -->
@@ -890,12 +991,12 @@
               <div class="carousel-wrapper">
                 <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
                 <div class="carousel-track">
-                  <img src="images/aulas/aula_2.jpeg" class="carousel-img" alt="Projetos e Atividades - foto 1">
-                  <img src="images/aulas/aula_3.jpeg" class="carousel-img" alt="Projetos e Atividades - foto 2">
-                  <img src="images/aulas/kit_iot.jpg" class="carousel-img" alt="Projetos e Atividades - foto 3">
-                  <img src="images/aulas/kit_motores.jpg" class="carousel-img" alt="Projetos e Atividades - foto 4">
-                  <img src="images/aulas/visita_2.png" class="carousel-img" alt="Projetos e Atividades - foto 5">
-                  <img src="images/aulas/atividades_gerais.jpg" class="carousel-img" alt="Projetos e Atividades - foto 6">
+                  <img src="images/aulas/aula_2.jpeg" class="carousel-img" loading="lazy" decoding="async" alt="Projetos e Atividades - foto 1">
+                  <img src="images/aulas/aula_3.jpeg" class="carousel-img" loading="lazy" decoding="async" alt="Projetos e Atividades - foto 2">
+                  <img src="images/aulas/kit_iot.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Projetos e Atividades - foto 3">
+                  <img src="images/aulas/kit_motores.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Projetos e Atividades - foto 4">
+                  <img src="images/aulas/visita_2.png" class="carousel-img" loading="lazy" decoding="async" alt="Projetos e Atividades - foto 5">
+                  <img src="images/aulas/atividades_gerais.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Projetos e Atividades - foto 6">
                 </div>
                 <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
               </div>
@@ -904,29 +1005,25 @@
             <!-- COLUNA 3: Vídeo do YouTube -->
             <div class="media-col">
               <h3>Depoimento Professor Eduardo</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/q_XuN53JmiQ"
-                  title="Depoimento Professor Eduardo"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="q_XuN53JmiQ" data-title="Depoimento Professor Eduardo">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento Professor Eduardo">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/q_XuN53JmiQ/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=q_XuN53JmiQ" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
             <!-- COLUNA 4: Vídeo do YouTube -->
             <div class="media-col">
               <h3>Depoimento Professor Marco</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/kPJL3QE7ZU0"
-                  title="Depoimento Professor Marco"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="kPJL3QE7ZU0" data-title="Depoimento Professor Marco">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento Professor Marco">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/kPJL3QE7ZU0/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=kPJL3QE7ZU0" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
           </div>
         </div>
@@ -945,15 +1042,13 @@
             <!-- COLUNA 1: Vídeo do YouTube -->
             <div class="media-col">
               <h3>Depoimento Rafael Baldo</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/Xxw-bKuGPVw"
-                  title="Depoimento Rafael Baldo"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="Xxw-bKuGPVw" data-title="Depoimento Rafael Baldo">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Depoimento Rafael Baldo">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/Xxw-bKuGPVw/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=Xxw-bKuGPVw" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
             <!-- COLUNA 2: Carrossel de Fotos -->
@@ -962,12 +1057,12 @@
               <div class="carousel-wrapper">
                 <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
                 <div class="carousel-track">
-                  <img src="images/eventos/celebra-saber_1.jpg" class="carousel-img" alt="Eventos e Atividades - foto 1">
-                  <img src="images/eventos/celebra-saber_2.jpg" class="carousel-img" alt="Eventos e Atividades - foto 2">
-                  <img src="images/eventos/divulgacao_1.jpg" class="carousel-img" alt="Eventos e Atividades - foto 3">
-                  <img src="images/eventos/divulgacao_2.jpg" class="carousel-img" alt="Eventos e Atividades - foto 4">
-                  <img src="images/eventos/visita_tecnica.jpg" class="carousel-img" alt="Eventos e Atividades - foto 5">
-                  <img src="images/eventos/visita_tecnica2.jpg" class="carousel-img" alt="Eventos e Atividades - foto 6">
+                  <img src="images/eventos/celebra-saber_1.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Eventos e Atividades - foto 1">
+                  <img src="images/eventos/celebra-saber_2.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Eventos e Atividades - foto 2">
+                  <img src="images/eventos/divulgacao_1.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Eventos e Atividades - foto 3">
+                  <img src="images/eventos/divulgacao_2.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Eventos e Atividades - foto 4">
+                  <img src="images/eventos/visita_tecnica.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Eventos e Atividades - foto 5">
+                  <img src="images/eventos/visita_tecnica2.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Eventos e Atividades - foto 6">
                 </div>
                 <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
               </div>
@@ -990,15 +1085,13 @@
             <!-- COLUNA 1: Vídeo do YouTube -->
             <div class="media-col">
               <h3>Canal do Youtube Pessoal</h3>
-              <div class="video-frame">
-                <iframe
-                  src="https://www.youtube.com/embed/_rdOnUxjZq8"
-                  title="Canal do Youtube Pessoal"
-                  loading="lazy"
-                  referrerpolicy="strict-origin-when-cross-origin"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen></iframe>
+              <div class="video-frame" data-yt="_rdOnUxjZq8" data-title="Canal do Youtube Pessoal">
+                <button class="video-play" type="button" aria-label="Reproduzir vídeo: Canal do Youtube Pessoal">
+                  <img class="video-thumb" src="https://i.ytimg.com/vi/_rdOnUxjZq8/hqdefault.jpg" alt="" loading="lazy" decoding="async" onerror="this.remove()">
+                  <span class="play-icon" aria-hidden="true"></span>
+                </button>
               </div>
+              <a class="video-ext" href="https://www.youtube.com/watch?v=_rdOnUxjZq8" target="_blank" rel="noopener">▶ Assistir no YouTube</a>
             </div>
 
             <!-- COLUNA 2: Carrossel de Fotos -->
@@ -1007,9 +1100,9 @@
               <div class="carousel-wrapper">
                 <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
                 <div class="carousel-track">
-                  <img src="images/remote/remote_4.jpg" class="carousel-img" alt="Galeria de Fotos - Proeducador - foto 1">
-                  <img src="images/eventos/proeducador_1.jpg" class="carousel-img" alt="Galeria de Fotos - Proeducador - foto 2">
-                  <img src="images/eventos/proeducador_2.jpg" class="carousel-img" alt="Galeria de Fotos - Proeducador - foto 3">
+                  <img src="images/remote/remote_4.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - Proeducador - foto 1">
+                  <img src="images/eventos/proeducador_1.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - Proeducador - foto 2">
+                  <img src="images/eventos/proeducador_2.jpg" class="carousel-img" loading="lazy" decoding="async" alt="Galeria de Fotos - Proeducador - foto 3">
                 </div>
                 <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
               </div>
@@ -1026,24 +1119,128 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        const carousels = document.querySelectorAll(".carousel-wrapper");
+        /* ===== Carrossel ===== */
+        const ALT_EXTS = ["jpg", "jpeg", "png", "webp", "JPG", "JPEG", "PNG"];
 
-        carousels.forEach(wrapper => {
+        // Se a imagem falhar, tenta outras extensões do mesmo nome; se nada servir, mostra aviso.
+        function recover(img) {
+          const tried = new Set([img.getAttribute("src")]);
+          img.addEventListener("error", function onError() {
+            const base = img.getAttribute("src").replace(/\.[^./]+$/, "");
+            for (const ext of ALT_EXTS) {
+              const candidate = base + "." + ext;
+              if (!tried.has(candidate)) {
+                tried.add(candidate);
+                img.src = candidate;
+                return;
+              }
+            }
+            img.removeEventListener("error", onError);
+            console.warn("Imagem não encontrada:", [...tried][0]);
+            const fb = document.createElement("div");
+            fb.className = "carousel-img carousel-fallback" + (img.classList.contains("is-active") ? " is-active" : "");
+            fb.setAttribute("role", "img");
+            fb.setAttribute("aria-label", img.alt);
+            fb.textContent = "Imagem indisponível";
+            img.replaceWith(fb);
+          });
+        }
+
+        document.querySelectorAll(".carousel-wrapper").forEach((wrapper) => {
           const track = wrapper.querySelector(".carousel-track");
           const prevBtn = wrapper.querySelector(".prev-btn");
           const nextBtn = wrapper.querySelector(".next-btn");
+          if (!track) return;
 
-          if (prevBtn && nextBtn && track) {
-            nextBtn.addEventListener("click", () => {
-              const slideWidth = track.firstElementChild ? track.firstElementChild.clientWidth : track.clientWidth;
-              track.scrollBy({ left: slideWidth, behavior: "smooth" });
+          const slides = () => Array.from(track.children);
+          const heading = wrapper.parentElement.querySelector("h3");
+          let index = 0;
+
+          wrapper.setAttribute("role", "region");
+          wrapper.setAttribute("aria-roledescription", "carrossel");
+          wrapper.setAttribute("aria-label", heading ? heading.textContent.trim() : "Galeria de fotos");
+          wrapper.tabIndex = 0;
+
+          slides().forEach((el) => { if (el.tagName === "IMG") recover(el); });
+
+          const dotsBox = document.createElement("div");
+          dotsBox.className = "carousel-dots";
+          const dots = slides().map((_, i) => {
+            const dot = document.createElement("button");
+            dot.type = "button";
+            dot.className = "carousel-dot";
+            dot.setAttribute("aria-label", "Ir para a foto " + (i + 1));
+            dot.addEventListener("click", () => show(i));
+            dotsBox.appendChild(dot);
+            return dot;
+          });
+          wrapper.appendChild(dotsBox);
+
+          function show(i) {
+            const list = slides();
+            const n = list.length;
+            if (!n) return;
+            index = (i + n) % n;
+            list.forEach((el, k) => {
+              el.classList.toggle("is-active", k === index);
+              el.setAttribute("aria-hidden", k === index ? "false" : "true");
             });
-
-            prevBtn.addEventListener("click", () => {
-              const slideWidth = track.firstElementChild ? track.firstElementChild.clientWidth : track.clientWidth;
-              track.scrollBy({ left: -slideWidth, behavior: "smooth" });
+            dots.forEach((d, k) => {
+              d.classList.toggle("is-active", k === index);
+              d.setAttribute("aria-current", k === index ? "true" : "false");
+            });
+            // Pré-carrega vizinhas (as fotos são pesadas e usam loading="lazy")
+            [list[(index + 1) % n], list[(index - 1 + n) % n]].forEach((el) => {
+              if (el.tagName === "IMG") el.loading = "eager";
             });
           }
+
+          if (prevBtn) prevBtn.addEventListener("click", () => show(index - 1));
+          if (nextBtn) nextBtn.addEventListener("click", () => show(index + 1));
+
+          wrapper.addEventListener("keydown", (e) => {
+            if (e.key === "ArrowLeft") { e.preventDefault(); show(index - 1); }
+            if (e.key === "ArrowRight") { e.preventDefault(); show(index + 1); }
+          });
+
+          let startX = null;
+          wrapper.addEventListener("pointerdown", (e) => { startX = e.clientX; });
+          wrapper.addEventListener("pointerup", (e) => {
+            if (startX === null) return;
+            const dx = e.clientX - startX;
+            startX = null;
+            if (Math.abs(dx) > 40) show(index + (dx < 0 ? 1 : -1));
+          });
+          wrapper.addEventListener("pointercancel", () => { startX = null; });
+
+          show(0);
+        });
+
+        /* ===== Vídeos do YouTube (carregados ao clicar) ===== */
+        document.addEventListener("click", (e) => {
+          const btn = e.target.closest(".video-play");
+          if (!btn) return;
+          const frame = btn.closest(".video-frame");
+          const id = frame.dataset.yt;
+          const list = frame.dataset.list;
+          const watchUrl = "https://www.youtube.com/watch?v=" + id + (list ? "&list=" + list : "");
+
+          // Abrindo o arquivo direto do computador (file://) o YouTube recusa o embed (erro 153).
+          if (location.protocol === "file:") {
+            window.open(watchUrl, "_blank", "noopener");
+            return;
+          }
+
+          const params = new URLSearchParams({ autoplay: "1", rel: "0", playsinline: "1" });
+          if (list) params.set("list", list);
+
+          const iframe = document.createElement("iframe");
+          iframe.src = "https://www.youtube-nocookie.com/embed/" + id + "?" + params.toString();
+          iframe.title = frame.dataset.title || "Vídeo do YouTube";
+          iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share";
+          iframe.referrerPolicy = "strict-origin-when-cross-origin";
+          iframe.allowFullscreen = true;
+          frame.replaceChildren(iframe);
         });
       });
     </script>
