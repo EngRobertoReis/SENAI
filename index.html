@@ -56,11 +56,49 @@ main{max-width:1180px;margin:0 auto;padding:34px 28px 64px}
 .intro h2{margin:0 0 10px;font-size:1.35rem;color:var(--charcoal)}
 .intro p{margin:0;color:var(--muted);white-space:pre-line}
 
+/* Citação em Destaque */
+.quote-banner {
+  margin-top: 20px;
+  padding: 18px 24px;
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.05) 0%, rgba(201, 0, 0, 0.12) 100%);
+  border-right: 4px solid var(--senai-red);
+  border-left: none;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 14px;
+  box-shadow: inset 0 0 0 1px rgba(201,0,0,0.1);
+  transition: var(--transition);
+  text-align: right;
+}
+.quote-banner:hover {
+  transform: translateX(-4px);
+  background: linear-gradient(135deg, rgba(255, 0, 0, 0.08) 0%, rgba(201, 0, 0, 0.16) 100%);
+}
+.quote-icon {
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--senai-red);
+  font-family: Georgia, serif;
+}
+.quote-text {
+  margin: 0;
+  font-size: clamp(1rem, 1.8vw, 1.3rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  background: linear-gradient(90deg, var(--senai-red-dark), var(--senai-red));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-transform: uppercase;
+}
+
 .section-panel{margin-top:28px;padding:32px;border:1px solid var(--border);scroll-margin-top:84px}
 .section-panel:hover{box-shadow:var(--shadow-hover)}
 .section-panel h2{margin:0 0 16px;color:var(--charcoal);font-size:1.45rem;line-height:1.3;position:relative;display:inline-block}
 .section-panel h2::after{content:'';display:block;width:40px;height:3px;background:var(--senai-red);margin-top:6px;border-radius:2px}
-.section-text{margin:0 0 12px;color:var(--muted);white-space:pre-line}
+.section-text{margin:0 0 16px;color:var(--muted);white-space:pre-line;line-height:1.75}
+.section-text + .section-text{margin-top:12px}
 .section-block{margin-top:24px}
 .section-block h3{margin:0 0 12px;color:var(--charcoal);font-size:1.05rem;font-weight:700}
 
@@ -251,7 +289,7 @@ footer strong{color:#ff6b6b}
   <div class="nav-inner">
     <a href="#Sobre">Sobre</a>
     <a href="#Hannover">Hannover</a>
-    <a href="#ReMote">ReMoTe</a>
+    <a href="#remote-section">ReMoTe</a>
     <a href="#SP Skills">SP Skills</a>
     <a href="#Saga SENAI">Saga SENAI</a>
     <a href="#SAEP">SAEP</a>
@@ -265,11 +303,16 @@ footer strong{color:#ff6b6b}
   <!-- SEÇÃO FIXA: SOBRE -->
   <section class="intro" id="Sobre">
     <h2>Sobre</h2>
-    <p class="section-text">Este portfólio tem o objetivo de mostrar as atividades e projetos que venho desenvolvendo na Unidade 6.01 - São Carlos. 
-       Durante estes 3 anos dentro da Instituição SENAI - SP, venho atuando em diversas frentes, projetos e eventos, além do ensino em sala de aula.
-       Este documento contém fotos, vídeos, depoimentos e documentos mostrando um pouco das atividades desenvolvidas em parceria a equipe escolar.
-       Agradeço a todos os colegas, gestores e colaboradores do SENAI - SP e da Unidade 6.01, pois seu apoio e colaboração foram fundamentais para consolidação das atividades.
-    </p>
+    <p class="section-text">Este portfólio tem o objetivo de mostrar as atividades e projetos que venho desenvolvendo na Unidade 6.01 - São Carlos.</p>
+    <p class="section-text">Durante estes 3 anos dentro da Instituição SENAI - SP, venho atuando em diversas frentes, projetos e eventos, além do ensino em sala de aula.</p>
+    <p class="section-text">Este documento contém fotos, vídeos, depoimentos e documentos mostrando um pouco das atividades desenvolvidas em parceria a equipe escolar.</p>
+    <p class="section-text">Agradeço a todos os colegas, gestores e colaboradores do SENAI - SP e da Unidade 6.01, pois seu apoio e colaboração foram fundamentais para consolidação das atividades.</p>
+
+    <!-- Frase de Destaque -->
+    <div class="quote-banner">
+      <p class="quote-text">"NINGUÉM CRESCE SOZINHO" - SHUNJI NISHIMURA</p>
+      <span class="quote-icon">”</span>
+    </div>
   </section>
 
   <!-- SEÇÃO HANNOVER -->
@@ -279,10 +322,8 @@ footer strong{color:#ff6b6b}
     <div class="section-block">
       <p class="section-text">Especialista convidado para Missão de Prospecção Tecnológica na "Hannover Messe - 2026", maior feira de automação industrial internacional sediada em Hannover - Alemanha.</p>
       <p class="section-text">A missão teve como objetivo a prospecção tecnológica nas áreas de: automação industrial, Inteligência Artificial, Robótica Humanóide e Eficiência Energética.</p>
-      <p class="section-text">Após esta experiência, busquei disseminar os conhecimentos adquiridos e, junto a equipe escolar, estamos implementando um plano de ação, baseado nas tecnologias exploradas na feira internacional, 
-         para avançar em direção aos conceitos de virtualização, inteligência artificial e conectividade.</p>
-      <p class="section-text">Para o ano de 2026 a meta é aplicar os conceitos de realidade virtual e aumentada, inteligência artificial agêntica e generativa, conectividade e big data, para digitalização de máquinas e ambientes,
-         integrando o desenvolvimento e aplicação destes conceitos com as unidades curriculares de diferentes cursos e aplicando situações desafiadoras alinhadas com desafios reais da indústria. </p>
+      <p class="section-text">Após esta experiência, busquei disseminar os conhecimentos adquiridos e, junto a equipe escolar, estamos implementando um plano de ação, baseado nas tecnologias exploradas na feira internacional, para avançar em direção aos conceitos de virtualização, inteligência artificial e conectividade.</p>
+      <p class="section-text">Para o ano de 2026 a meta é aplicar os conceitos de realidade virtual e aumentada, inteligência artificial agêntica e generativa, conectividade e big data, para digitalização de máquinas e ambientes, integrando o desenvolvimento e aplicação destes conceitos com as unidades curriculares de diferentes cursos e aplicando situações desafiadoras alinhadas com desafios reais da indústria.</p>
       <p class="section-text">Os resultados deste plano de ação você confere neste portfólio, nas imagens, vídeos e depoimentos. Para uma demonstração do trabalho, acesse o QR Code ou link: <a href="https://senaisaocarlos.github.io/tormax30/" target="_blank" style="color:var(--senai-red-dark); font-weight:700;">https://senaisaocarlos.github.io/tormax30/</a></p>
     </div>
     
@@ -290,39 +331,37 @@ footer strong{color:#ff6b6b}
     <div class="section-block">
       <div class="media-row">
         
-        <!-- COLUNA 1: Relatório em PDF -->
+        <!-- COLUNA 1: Relatório em PDF com imagem clicável -->
         <div class="media-col">
           <h3>Relatório da Missão Tecnológica</h3>
-          <div class="file-list">
-            <article class="file-item">
-              <a href="#" target="_blank" rel="noopener">Abrir relatório em PDF ➔</a>
-              <div class="placeholder-media" style="background: linear-gradient(135deg, #c90000, #ff4d4d);">Boletim Tecnológico Hannover Messe</div>
-              <p>Boletim Tecnológico Hannover Messe 2026</p>
-            </article>
-          </div>
+          <!-- EDITAR: Substitua 'href="#"' pelo link direto do arquivo PDF ou documento -->
+          <a href="#" target="_blank" rel="noopener" style="display:block; width:100%; height:100%;">
+            <div class="placeholder-media" style="background: linear-gradient(135deg, #c90000, #ff4d4d); border-radius:10px; border:1px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+              <!-- EDITAR: Para trocar por uma imagem de capa do PDF, substitua este span por: <img src="caminho_da_imagem.jpg" class="carousel-img" alt="Relatório PDF"> -->
+              <span>📄 Clique para abrir o Relatório em PDF</span>
+            </div>
+          </a>
         </div>
 
-        <!-- COLUNA 2: QR Code e Link -->
+        <!-- COLUNA 2: QR Code / Link com imagem clicável -->
         <div class="media-col">
-          <h3>Acesse pelo QR Code ou Link</h3>
-          <div class="file-list">
-            <article class="file-item" style="text-align: center;">
-              <a href="https://senaisaocarlos.github.io/tormax30/" target="_blank" rel="noopener">Acessar Demonstração ➔</a>
-              <!-- Espaço para a imagem do QR Code. Você pode substituir este placeholder por: <img src="caminho/qr-code.png" alt="QR Code" class="image-preview"> -->
-              <div class="placeholder-media" style="background: linear-gradient(135deg, #2c3e50, #4ca1af);">
-                [ Insira a Imagem do QR Code Aqui ]
-              </div>
-              <p>Escaneie o QR Code ou clique no link acima</p>
-            </article>
-          </div>
+          <h3>Acessar Demonstração (QR Code)</h3>
+          <!-- EDITAR: Insira o link de destino no atributo 'href' -->
+          <a href="https://senaisaocarlos.github.io/tormax30/" target="_blank" rel="noopener" style="display:block; width:100%; height:100%;">
+            <div class="placeholder-media" style="background: linear-gradient(135deg, #2c3e50, #4ca1af); border-radius:10px; border:1px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+              <!-- EDITAR: Para imagem do QR Code, substitua este span por: <img src="caminho_do_qrcode.png" class="carousel-img" alt="QR Code"> -->
+              <span>📱 Clique ou Escaneie para acessar o site</span>
+            </div>
+          </a>
         </div>
 
-        <!-- COLUNA 3: Carrossel de Fotos -->
+        <!-- COLUNA 3: Galeria de Fotos -->
         <div class="media-col">
           <h3>Galeria de Fotos - Hannover</h3>
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
+              <!-- EDITAR: Substitua as divs placeholder por tags <img src="caminho_foto.jpg" class="carousel-img" alt="Descrição"> -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #1e3c72, #2a5298);">Foto 1 - Hannover Messe</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #00b09b, #96c93d);">Foto 2 - Estande Robótica</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #ee0979, #ff6a00);">Foto 3 - IA e Automação</div>
@@ -335,6 +374,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Depoimento Prof. Luciano Trevisan</h3>
           <div class="video-frame">
+            <!-- EDITAR: Altere o atributo 'src' com o link embed do YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/sXXoz9IW0d8" 
               title="Depoimento Professor Luciano Trevisan" 
@@ -350,13 +390,12 @@ footer strong{color:#ff6b6b}
   </section>
 
   <!-- SEÇÃO REMOTE -->
-  <section class="section-panel" id="ReMoTe">
+  <section class="section-panel" id="remote-section">
     <h2>Rede de Mobilizadores de Tecnologias Educacionais</h2>
     
     <div class="section-block">
       <p class="section-text">Como Mobilizador de Tecnologias Educacionais na Unidade, atuei diretamente na organização e execução dos projetos de ação da ReMoTe, capacitando docentes, disseminando tecnologias educacionais e compartilhando boas práticas educacionais.</p>
-      <p class="section-text">Entre 2024 e 2025 foi planejado e executado, gradativamente, um plano de ação para capacitação, validação e multiplicação de boas práticas pedagógicas e uso de tecnologias educacionais.
-      O resultado pode ser conferido no vídeo e com os depoimentos dos colegas que me apoiaram neste projeto.</p>
+      <p class="section-text">Entre 2024 e 2025 foi planejado e executado, gradativamente, um plano de ação para capacitação, validação e multiplicação de boas práticas pedagógicas e uso de tecnologias educacionais. O resultado pode ser conferido no vídeo e com os depoimentos dos colegas que me apoiaram neste projeto.</p>
     </div>
     
     <div class="section-block">
@@ -366,6 +405,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Projeto Integrado CFP 6.01</h3>
           <div class="video-frame">
+            <!-- EDITAR: Altere o 'src' com seu ID de vídeo do YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/XYa-U0BqFR4" 
               title="Projeto Integrado ReMoTe - CFP 6.01" 
@@ -376,10 +416,11 @@ footer strong{color:#ff6b6b}
           </div>
         </div>
 
-        <!-- COLUNA 2: Vídeo do YouTube 2 (Novo) -->
+        <!-- COLUNA 2: Vídeo do YouTube 2 -->
         <div class="media-col">
           <h3>Vídeo ReMoTe</h3>
           <div class="video-frame">
+            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do video no YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo ReMoTe" 
@@ -396,6 +437,7 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
+              <!-- EDITAR: Insira aqui suas imagens em <img src="..." class="carousel-img"> -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #4776E6, #8E54E9);">Foto 1 - ReMoTe Oficina</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #FF8008, #FFC837);">Foto 2 - Capacitação Docente</div>
             </div>
@@ -407,6 +449,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Depoimento Primo Melaré</h3>
           <div class="video-frame">
+            <!-- EDITAR: Altere o 'src' com seu ID de vídeo do YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/WMQHe7Gb0k4" 
               title="Depoimento Especialista Primo Melaré" 
@@ -426,6 +469,7 @@ footer strong{color:#ff6b6b}
     <h2>SP Skills</h2>
     
     <div class="section-block">
+      <!-- EDITAR: Insira os parágrafos explicativos da seção -->
       <p class="section-text">Insira aqui a descrição das atividades, treinamentos e preparação dos alunos para as competições profissionais do SP Skills, promovendo a excelência na educação profissional.</p>
     </div>
     
@@ -435,6 +479,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo SP Skills</h3>
           <div class="video-frame">
+            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo do YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo SP Skills" 
@@ -451,6 +496,7 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
+              <!-- EDITAR: Insira aqui suas fotos -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #f2994a, #f2c94c);">Foto 1 - SP Skills</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #eb5757, #000000);">Foto 2 - SP Skills</div>
             </div>
@@ -476,6 +522,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Desafio de Ideias - Alunos</h3>
           <div class="video-frame">
+            <!-- EDITAR: Altere o 'src' para o vídeo de Desafio de Ideias -->
             <iframe 
               src="https://www.youtube.com/embed/8Duq8Bf-h-w" 
               title="Depoimento dos Alunos sobre o Desafio de Ideias" 
@@ -486,10 +533,11 @@ footer strong{color:#ff6b6b}
           </div>
         </div>
 
-        <!-- COLUNA 2: Vídeo do YouTube 2 (Novo) -->
+        <!-- COLUNA 2: Vídeo do YouTube 2 -->
         <div class="media-col">
           <h3>Vídeo Saga SENAI</h3>
           <div class="video-frame">
+            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo do YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo Saga SENAI de Inovação" 
@@ -506,6 +554,7 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
+              <!-- EDITAR: Insira aqui suas imagens -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #11998e, #38ef7d);">Foto 1 - Desafio de Ideias</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #3a7bd5, #3a6073);">Foto 2 - Pitch de Inovação</div>
             </div>
@@ -517,6 +566,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Depoimento Prof. Yuri</h3>
           <div class="video-frame">
+            <!-- EDITAR: Altere o 'src' para o depoimento do Prof. Yuri -->
             <iframe 
               src="https://www.youtube.com/embed/GxqMAoTlE9U" 
               title="Depoimento Professor Yuri" 
@@ -536,6 +586,7 @@ footer strong{color:#ff6b6b}
     <h2>SAEP</h2>
     
     <div class="section-block">
+      <!-- EDITAR: Texto explicativo sobre o SAEP -->
       <p class="section-text">Insira aqui a descrição das atividades e avaliações relacionadas ao SAEP (Sistema de Avaliação da Educação Profissional), contemplando o acompanhamento do desempenho e a qualidade do ensino técnico.</p>
     </div>
     
@@ -545,6 +596,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo SAEP</h3>
           <div class="video-frame">
+            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo no YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo SAEP" 
@@ -561,6 +613,7 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
+              <!-- EDITAR: Insira aqui suas fotos -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #56CCF2, #2F80ED);">Foto 1 - SAEP</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #BB6BD9, #4F46E5);">Foto 2 - SAEP</div>
             </div>
@@ -576,6 +629,7 @@ footer strong{color:#ff6b6b}
     <h2>Projetos</h2>
     
     <div class="section-block">
+      <!-- EDITAR: Texto explicativo sobre os Projetos -->
       <p class="section-text">Insira aqui a descrição dos projetos desenvolvidos na unidade, integrando tecnologia, automação e metodologias ativas no aprendizado dos alunos.</p>
     </div>
     
@@ -585,6 +639,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo de Projetos</h3>
           <div class="video-frame">
+            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo no YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo Projetos" 
@@ -601,6 +656,7 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
+              <!-- EDITAR: Insira aqui suas fotos -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #007991, #78ffd6);">Foto 1 - Projetos</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #3E5151, #DECBA4);">Foto 2 - Projetos</div>
             </div>
@@ -616,6 +672,7 @@ footer strong{color:#ff6b6b}
     <h2>Eventos</h2>
     
     <div class="section-block">
+      <!-- EDITAR: Texto explicativo sobre Eventos -->
       <p class="section-text">Insira aqui a descrição dos eventos, feiras tecnológicas, palestras e workshops realizados na instituição ou com participação externa.</p>
     </div>
     
@@ -625,6 +682,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo de Eventos</h3>
           <div class="video-frame">
+            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo no YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo Eventos" 
@@ -641,6 +699,7 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
+              <!-- EDITAR: Insira aqui suas fotos -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #FF416C, #FF4B2B);">Foto 1 - Eventos</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #5433FF, #20BDFF);">Foto 2 - Eventos</div>
             </div>
@@ -656,6 +715,7 @@ footer strong{color:#ff6b6b}
     <h2>Proeducador</h2>
     
     <div class="section-block">
+      <!-- EDITAR: Texto explicativo sobre o Proeducador -->
       <p class="section-text">Insira aqui a descrição das atividades do Proeducador. Você pode detalhar os objetivos, metodologias e impactos alcançados nesta iniciativa desenvolvida no SENAI-SP.</p>
     </div>
     
@@ -666,6 +726,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo do Projeto Proeducador</h3>
           <div class="video-frame">
+            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo no YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo Proeducador" 
@@ -682,6 +743,7 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
+              <!-- EDITAR: Insira suas fotos aqui -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #8E2DE2, #4A00E0);">Foto 1 - Proeducador</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #f857a6, #ff5858);">Foto 2 - Proeducador</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #11998e, #38ef7d);">Foto 3 - Proeducador</div>
