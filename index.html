@@ -202,6 +202,14 @@ main{max-width:1180px;margin:0 auto;padding:34px 28px 64px}
   object-fit: cover;
   scroll-snap-align: start;
   background: var(--charcoal);
+  display: block;
+}
+
+/* Classe ajustada para impedir o corte de QR codes */
+.fit-contain {
+  object-fit: contain !important;
+  background: #ffffff !important;
+  padding: 10px;
 }
 
 .carousel-btn {
@@ -244,6 +252,8 @@ main{max-width:1180px;margin:0 auto;padding:34px 28px 64px}
   font-size: 0.9rem;
   text-align: center;
   padding: 10px;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
 /* Rodapé */
@@ -327,7 +337,7 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Relatório da Missão Tecnológica</h3>
           <a href="documentos/relatorio-hannover-2026.pdf" target="_blank" rel="noopener" style="display:block; width:100%; height:100%;">
-            <div class="placeholder-media" style="background: linear-gradient(135deg, #c90000, #ff4d4d); border-radius:10px; border:1px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+            <div class="placeholder-media" style="background: linear-gradient(135deg, #c90000, #ff4d4d); border:1px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.08);">
               <img src="images/general/boletim.png" class="carousel-img" alt="Relatório PDF">
             </div>
           </a>
@@ -336,10 +346,9 @@ footer strong{color:#ff6b6b}
         <!-- COLUNA 2: QR Code / Link com imagem clicável -->
         <div class="media-col">
           <h3>Acessar Demonstração (QR Code)</h3>
-          <!-- EDITAR: Insira o link de destino no atributo 'href' -->
           <a href="https://senaisaocarlos.github.io/tormax30/" target="_blank" rel="noopener" style="display:block; width:100%; height:100%;">
-            <div class="placeholder-media" style="background: linear-gradient(135deg, #2c3e50, #4ca1af); border-radius:10px; border:1px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.08);">
-              <img src="images/general/qrcode_torno.png" class="carousel-img" alt="QR Code">
+            <div class="placeholder-media" style="background: #ffffff; border:1px solid var(--border); box-shadow:0 4px 12px rgba(0,0,0,0.08);">
+              <img src="images/general/qrcode_torno.png" class="carousel-img fit-contain" alt="QR Code">
             </div>
           </a>
         </div>
@@ -350,12 +359,12 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
-              <div class="images/hannover/hannover_1.jpg" style="background: linear-gradient(135deg, #1e3c72, #2a5298);">Foto 1</div>
-              <div class="images/hannover/hannover_2.jpg" style="background: linear-gradient(135deg, #00b09b, #96c93d);">Foto 2</div>
-              <div class="images/hannover/hannover_3.jpg" style="background: linear-gradient(135deg, #ee0979, #ff6a00);">Foto 3</div>
-              <div class="images/hannover/hannover_4.JPG" style="background: linear-gradient(135deg, #1e3c72, #2a5298);">Foto 4</div>
-              <div class="images/hannover/hannover_5.JPG" style="background: linear-gradient(135deg, #00b09b, #96c93d);">Foto 5</div>
-              <div class="images/hannover/hannover_6.JPG" style="background: linear-gradient(135deg, #ee0979, #ff6a00);">Foto 6</div>
+              <img src="images/hannover/hannover_1.jpg" class="carousel-img" alt="Foto 1 - Hannover">
+              <img src="images/hannover/hannover_2.jpg" class="carousel-img" alt="Foto 2 - Hannover">
+              <img src="images/hannover/hannover_3.jpg" class="carousel-img" alt="Foto 3 - Hannover">
+              <img src="images/hannover/hannover_4.JPG" class="carousel-img" alt="Foto 4 - Hannover">
+              <img src="images/hannover/hannover_5.JPG" class="carousel-img" alt="Foto 5 - Hannover">
+              <img src="images/hannover/hannover_6.JPG" class="carousel-img" alt="Foto 6 - Hannover">
             </div>
             <button class="carousel-btn next-btn" aria-label="Próxima">❯</button>
           </div>
@@ -365,7 +374,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Depoimento Prof. Luciano Trevisan</h3>
           <div class="video-frame">
-            <!-- EDITAR: Altere o atributo 'src' com o link embed do YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/sXXoz9IW0d8" 
               title="Depoimento Professor Luciano Trevisan" 
@@ -396,7 +404,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Projeto Integrado CFP 6.01</h3>
           <div class="video-frame">
-            <!-- EDITAR: Altere o 'src' com seu ID de vídeo do YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/XYa-U0BqFR4" 
               title="Projeto Integrado ReMoTe - CFP 6.01" 
@@ -411,7 +418,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo ReMoTe</h3>
           <div class="video-frame">
-            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do video no YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo ReMoTe" 
@@ -428,7 +434,6 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
-              <!-- EDITAR: Insira aqui suas imagens em <img src="..." class="carousel-img"> -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #4776E6, #8E54E9);">Foto 1 - ReMoTe Oficina</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #FF8008, #FFC837);">Foto 2 - Capacitação Docente</div>
             </div>
@@ -440,7 +445,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Depoimento Primo Melaré</h3>
           <div class="video-frame">
-            <!-- EDITAR: Altere o 'src' com seu ID de vídeo do YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/WMQHe7Gb0k4" 
               title="Depoimento Especialista Primo Melaré" 
@@ -469,7 +473,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo SP Skills</h3>
           <div class="video-frame">
-            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo do YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo SP Skills" 
@@ -486,7 +489,6 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
-              <!-- EDITAR: Insira aqui suas fotos -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #f2994a, #f2c94c);">Foto 1 - SP Skills</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #eb5757, #000000);">Foto 2 - SP Skills</div>
             </div>
@@ -512,7 +514,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Desafio de Ideias - Alunos</h3>
           <div class="video-frame">
-            <!-- EDITAR: Altere o 'src' para o vídeo de Desafio de Ideias -->
             <iframe 
               src="https://www.youtube.com/embed/8Duq8Bf-h-w" 
               title="Depoimento dos Alunos sobre o Desafio de Ideias" 
@@ -527,7 +528,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo Saga SENAI</h3>
           <div class="video-frame">
-            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo do YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo Saga SENAI de Inovação" 
@@ -544,7 +544,6 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
-              <!-- EDITAR: Insira aqui suas imagens -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #11998e, #38ef7d);">Foto 1 - Desafio de Ideias</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #3a7bd5, #3a6073);">Foto 2 - Pitch de Inovação</div>
             </div>
@@ -556,7 +555,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Depoimento Prof. Yuri</h3>
           <div class="video-frame">
-            <!-- EDITAR: Altere o 'src' para o depoimento do Prof. Yuri -->
             <iframe 
               src="https://www.youtube.com/embed/GxqMAoTlE9U" 
               title="Depoimento Professor Yuri" 
@@ -585,7 +583,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo SAEP</h3>
           <div class="video-frame">
-            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo no YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo SAEP" 
@@ -602,7 +599,6 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
-              <!-- EDITAR: Insira aqui suas fotos -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #56CCF2, #2F80ED);">Foto 1 - SAEP</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #BB6BD9, #4F46E5);">Foto 2 - SAEP</div>
             </div>
@@ -627,7 +623,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo de Projetos</h3>
           <div class="video-frame">
-            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo no YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo Projetos" 
@@ -644,7 +639,6 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
-              <!-- EDITAR: Insira aqui suas fotos -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #007991, #78ffd6);">Foto 1 - Projetos</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #3E5151, #DECBA4);">Foto 2 - Projetos</div>
             </div>
@@ -669,7 +663,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo de Eventos</h3>
           <div class="video-frame">
-            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo no YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo Eventos" 
@@ -686,7 +679,6 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
-              <!-- EDITAR: Insira aqui suas fotos -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #FF416C, #FF4B2B);">Foto 1 - Eventos</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #5433FF, #20BDFF);">Foto 2 - Eventos</div>
             </div>
@@ -712,7 +704,6 @@ footer strong{color:#ff6b6b}
         <div class="media-col">
           <h3>Vídeo do Projeto Proeducador</h3>
           <div class="video-frame">
-            <!-- EDITAR: Substitua 'seu_codigo_aqui' pelo ID do vídeo no YouTube -->
             <iframe 
               src="https://www.youtube.com/embed/seu_codigo_aqui" 
               title="Vídeo Proeducador" 
@@ -729,7 +720,6 @@ footer strong{color:#ff6b6b}
           <div class="carousel-wrapper">
             <button class="carousel-btn prev-btn" aria-label="Anterior">❮</button>
             <div class="carousel-track">
-              <!-- EDITAR: Insira suas fotos aqui -->
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #8E2DE2, #4A00E0);">Foto 1 - Proeducador</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #f857a6, #ff5858);">Foto 2 - Proeducador</div>
               <div class="carousel-img placeholder-media" style="background: linear-gradient(135deg, #11998e, #38ef7d);">Foto 3 - Proeducador</div>
